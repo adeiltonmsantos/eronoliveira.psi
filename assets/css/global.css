@@ -6,6 +6,10 @@
     font-size: 62.5%;
 }
 
+body{
+    background-color: #E5E8E3;
+}
+
 /* Header section */
 header{
     height: 16.7rem;
@@ -13,6 +17,7 @@ header{
     background-size: cover;
     background-position: 0% 40%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     padding: 1rem 2rem;
 }
@@ -30,22 +35,118 @@ header{
     filter: drop-shadow(0.5rem 0.5rem 0.25rem #000) ;
 }
 
-.info-banner h1{
+.info-banner-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-banner-details h1{
     font-family: "Kdam Thmor Pro";
     font-size: 2.5rem;
     line-height: 2.5rem;
     text-shadow: 0.3rem 0.3rem 0.1rem #000;
 }
 
-.info-banner h3, .info-banner h4{
+.info-banner-details h3, .info-banner h4{
     font-family: Koho;
     text-shadow: 0.3rem 0.3rem 0.1rem #000;
 }
 
-.info-banner h3{
+.info-banner-details h3{
     font-size: 1.5rem;
 }
 
-.info-banner h4{
+.info-banner-details h4{
     font-size: 1rem;
+}
+
+.frame-banner{
+    background-image: url("../img/frame-header.png");
+    background-size: cover;
+    height: 9.8rem;
+}
+
+/* End Header section */
+
+
+
+@media screen and (min-width: 400px){
+    header{
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: 100% 40%;
+        position: relative;
+        justify-content: center;
+    }
+
+    header::before{
+        content: "";
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 1) 0%, 
+            rgba(0, 0, 0, 1) 0%, 
+            rgba(0, 0, 0, 0.76) 55%, 
+            rgba(0, 0, 0, 0.58) 66%, 
+            rgba(0, 0, 0, 0.33) 78%, 
+            rgba(0, 0, 0, 0.12) 89%, 
+            rgba(0, 0, 0, 0) 100%);
+        z-index: 1;
+    }
+
+    .info-banner{
+        width: 80%;
+        height: 8.3rem;
+        flex-direction: row;
+    }
+
+    .info-banner img, .info-banner-details{
+        z-index: 2;
+    }    
+
+    .info-banner img{
+        width: 9.4rem;
+        height: 8.3rem;
+    }    
+
+    .info-banner-details{
+        width: 60%;
+        justify-content: space-between;
+    }
+
+    .info-banner-details h1{
+        width: 20rem;
+    }
+}
+
+@media screen and (min-width: 744px){
+    header{
+        background-size: 40%
+    }
+
+    header::before{
+        width: 100%;
+    }
+
+    .info-banner-details{
+        justify-content: center;
+    }
+
+    .info-banner-details h1{
+        width: 25rem;
+    }
+}
+
+@media screen and (min-width: 1080px){
+    header{
+        background-size: 25%
+    }
+
+    header::before{
+        width: 110%;
+    }
 }
