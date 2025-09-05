@@ -153,15 +153,52 @@ header::before{
 }
 
 .feature-details h1{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
 }
 
 .feature-details p{
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 /* End features-banner-container */
 
+/* main-conainer, slider */
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 25.3rem;
+    height: 44rem;
+    row-gap: 2rem
+}
+
+.slider-container{
+    display: flex;
+    width: 100%;
+}
+
+.slider-container video{
+    width: 100%;
+    border-radius: 5%;
+}
+
+.slider-controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20rem;
+}
+
+.slider-controls button img{
+    width: 2rem;
+}
 
 @media screen and (min-width: 400px){
     header{
