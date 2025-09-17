@@ -170,9 +170,17 @@ header::before{
 /* main-conainer, slider */
 .main-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.main-container-slider{
     height: 74vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
 }
 
 .slider-section{
@@ -191,9 +199,6 @@ header::before{
     border: 0.5rem solid #2D4C3A;
     border-radius: 5%;
     row-gap: 2rem;
-    /* background-image: url("../img/vertical-frame.png");
-    background-size: contain;
-    background-repeat: no-repeat; */
 }
 
 .slider-container{
@@ -226,6 +231,32 @@ header::before{
 .slider-controls button img{
     width: 2rem;
 }
+
+.main-container-recommendations,
+.recomendation-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container-recommendations{
+    gap: 3rem;
+    padding: 3rem 0;
+}
+
+.recomendation-container{
+    gap: 1rem;
+}
+
+.recomendation-card{
+    display: flex;
+    gap: 0 2rem
+}
+
+.recomendation-card img{
+    width: 10.7rem;
+    height: 10.9rem;
+}
+
 
 @media screen and (min-width: 400px){
     header{
