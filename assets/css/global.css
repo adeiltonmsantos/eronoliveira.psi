@@ -7,11 +7,6 @@
 }
 
 /* Variáveis */
-:root{
-    --slider-width: 25.3rem;
-    --slider-height:49vh;
-    /* --slider-height: 44rem; */
-}
 
 body{
     background-color: #E5E8E3;
@@ -191,7 +186,10 @@ header::before{
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: calc(var(--slider-width));
+    width: var(--slider-width);
+    height: var(--slider-height);
+    border: 0.5rem solid #2D4C3A;
+    border-radius: 5%;
     row-gap: 2rem;
     /* background-image: url("../img/vertical-frame.png");
     background-size: contain;
@@ -201,7 +199,7 @@ header::before{
 .slider-container{
     display: flex;
     width: fit-content;
-    height: 100%;
+    height: var(--slider-height);
     position: relative;
     z-index: -1;
     animation: carousel 45s linear infinite;
@@ -210,7 +208,6 @@ header::before{
 .slider-container video{
     width: var(--slider-width);
     height: var(--slider-height);
-    border-radius: 5rem;
 }
 
 .slider-controls{
