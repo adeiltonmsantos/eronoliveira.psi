@@ -1,7 +1,7 @@
 /* Variáveis */
 :root{
-    --slider-width: 25.3rem;
-    --slider-height:49vh;
+    --slider-width: 28.28rem;
+    --slider-height:40rem;
     --time-slide: 8s;
     --time-transition: 3s;
 }
@@ -11,45 +11,32 @@
     0%{
         transform: translateX(0);
     }
-    14%{
+    20%{
         transform: translateX(0);
     }
     /* Slide 2 */
-    16.65%{
-        transform: translateX(-25.3rem);
+    25%{
+        transform: translateX(calc(-1 * var(--slider-width)));
     }
-    30.65%{
-        transform: translateX(-25.3rem);
+    45%{
+        transform: translateX(calc(-1 * var(--slider-width)));
     }
     /* Slide 3 */
-    33.3%{
-        transform: translateX(-50.6rem);
+    50%{
+        transform: translateX(calc(-2 * var(--slider-width)));
     }
-    47.3%{
-        transform: translateX(-50.6rem);
+    70%{
+        transform: translateX(calc(-2 * var(--slider-width)));
     }
     /* Slide 4 */
-    49.95%{
-        transform: translateX(-75.9rem);
+    75%{
+        transform: translateX(calc(-3 * var(--slider-width)));
     }
-    63.95%{
-        transform: translateX(-75.9rem);
+    95%{
+        transform: translateX(calc(-3 * var(--slider-width)));
     }
     /* Slide 5 */
-    66.6%{
-        transform: translateX(-101.2rem);
-    }
-    80.6%{
-        transform: translateX(-101.2rem);
-    }
-    /* Slide 6 */
-    83.25%{
-        transform: translateX(-126.5rem);
-    }
-    97.25%{
-        transform: translateX(-126.5rem);
-    }
     100%{
-        transform: translateX(-151.8rem);
+        transform: translateX(calc(-4 * var(--slider-width)));
     }
 }
