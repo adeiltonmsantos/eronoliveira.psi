@@ -394,6 +394,10 @@ header::before{
         padding: 0 4rem;
     }
 
+    .about-container > img{
+        width: 45rem;
+    }
+
     .about-card{
         width: 59.4rem;
     }
