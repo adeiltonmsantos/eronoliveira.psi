@@ -173,6 +173,8 @@ header::before{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
 }
 
 .main-container-slider{
@@ -331,6 +333,8 @@ header::before{
     
     .main-container{
         flex-direction: row;
+        justify-content: space-between;
+        padding: 0 4rem;
     }
 }
 
