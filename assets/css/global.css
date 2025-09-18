@@ -275,8 +275,65 @@ header::before{
     font-size: 1.8rem;
 }
 
+/* About me */
+.about-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f2f4f1;
+    gap: 1.5rem;
+}
+
+.about-container h1{
+    font-size: 2.5rem;
+    margin: 4rem 0 1.5rem;
+}
+
+.about-container img{
+    width: 30.6rem;
+}
+
+.about-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #d3d3d384;
+    width: 90%;
+    border-radius: 1rem;
+    gap: 2rem
+}
+
+.about-card img{
+    height: 7.5rem;
+    width: 7.4rem;
+}
+
+.about-card p{
+    font-size: 1.6rem;
+    text-align: justify;
+}
 
 
+/* Responsividade para smartfone quando girar tela */
+@media screen and (max-height: 630px){
+    .main-container-slider{
+        height: auto;
+        padding-top: 2rem;
+    }
+
+    .frame-banner{
+        height: auto;
+    }
+
+    header, header:before{
+        height: 10.3rem;
+    }
+}
+
+/* Smartfones grande (iPhone XR, etc.) */
 @media screen and (min-width: 400px){
     header{
         background-size: 60%;
@@ -315,7 +372,7 @@ header::before{
     }
 }
 
-@media screen and (min-width: 744px){
+@media screen and (min-width: 700px){
     header{
         background-size: 40%;
         flex-direction: row;
@@ -336,10 +393,24 @@ header::before{
         justify-content: space-between;
         padding: 0 4rem;
     }
+
+    .about-card{
+        width: 59.4rem;
+    }
 }
 
 @media screen and (min-width: 1080px){
     header{
         background-size: 25%;
+    }
+
+    .about-card:nth-child(3), .about-card:nth-child(5){
+        align-self: flex-start;
+        margin-left: 20%;
+    }
+
+    .about-card:nth-child(4), .about-card:nth-child(6){
+        align-self: flex-end;
+        margin-right: 20%;
     }
 }
