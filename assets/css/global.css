@@ -6,6 +6,11 @@
     font-size: 62.5%;
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Variáveis */
 
 body{
@@ -286,12 +291,31 @@ header::before{
     gap: 1.5rem;
 }
 
-.about-container h1{
-    font-size: 2.5rem;
+.profile-container, .consultations-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-container h1, .consultations-container h1{
+    font-size: 2rem;
     margin: 4rem 0 1.5rem;
 }
 
-.about-container img{
+.images-container{
+    display: flex;
+    gap: 2rem;
+}
+
+.image-container-left, .image-container-right{
+    width: 26.7rem;
+    height: 43.2rem;
+    display: none;
+}
+
+.image-container-center{
     width: 30.6rem;
 }
 
@@ -315,6 +339,56 @@ header::before{
     font-size: 1.6rem;
     text-align: justify;
 }
+
+/* Consultations styles */
+.consultations-card{
+    display: flex;
+    align-items: center;
+    width: 33.1rem;
+    background-color: #D4D4D4;
+    padding: 1rem;
+    border-radius: 1rem;
+    gap: 1.5rem;
+}
+
+.consultations-card img{
+    width: 11.3rem;
+}
+
+.consultations-card-details{
+    width: 18.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem
+}   
+
+.consultations-card-details h1{
+    font-size: 1.6rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.consultations-card-details p{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.consultations-card-details img{
+    width: 4rem;
+}
+
+.consultations-card-details a{
+    font-size: 1.5rem;
+}
+
+.consultations-card-details span{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(23, 23, 145);
+}
+
 
 
 /* Responsividade para smartfone quando girar tela */
@@ -401,6 +475,14 @@ header::before{
     .about-card{
         width: 59.4rem;
     }
+
+    .image-container-center{
+        width: 45rem;
+    }
+
+    .profile-container h1, .consultations-container h1{
+        font-size: 3rem;
+    }
 }
 
 @media screen and (min-width: 1080px){
@@ -416,5 +498,13 @@ header::before{
     .about-card:nth-child(4), .about-card:nth-child(6){
         align-self: flex-end;
         margin-right: 20%;
+    }
+
+    .image-container-left, .image-container-right{
+        display: block;
+    }
+
+    .image-container-right{
+        transform: scaleX(-1);
     }
 }
