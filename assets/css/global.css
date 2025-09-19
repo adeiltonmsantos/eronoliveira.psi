@@ -507,4 +507,45 @@ header::before{
     .image-container-right{
         transform: scaleX(-1);
     }
+
+    .consultations-card{
+        width: 52.9rem;
+        height: 29.8rem;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2rem;
+    }
+
+    .consultations-card-details{
+        width: 18.3rem;
+    }
+
+    .consultations-card-details h1{
+        font-size: 2.5rem;
+    }
+
+    .consultations-card-details p{
+        font-size: 2rem;
+    }
+
+    .consultations-card-details p span{
+        font-size: 2rem;
+    }
+
+    .consultations-card .image-consultations-card{
+        width: 18rem;
+        height: 26.5rem;
+    }
+
+    .logo-consultations-card{
+        width: 4rem;
+        height: 4re;
+    }
+
+    .consultations-card-container{
+        display: flex;
+        gap: 3rem;
+    }
+
 }
