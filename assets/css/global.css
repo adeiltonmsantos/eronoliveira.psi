@@ -327,7 +327,7 @@ header::before{
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #d3d3d384;
+    background-color: #69957030;
     width: 90%;
     border-radius: 1rem;
     gap: 2rem
@@ -368,7 +368,7 @@ header::before{
     display: flex;
     align-items: center;
     width: 33.1rem;
-    background-color: #D4D4D4;
+    background-color: #69957030;
     padding: 1rem;
     border-radius: 1rem;
     gap: 1.5rem;
