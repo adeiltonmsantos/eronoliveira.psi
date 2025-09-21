@@ -95,8 +95,6 @@ header::before{
 /* Frame */
 .frame-banner{
     background-image: url("../img/marmore-verde.jpg");
-    /* background-color: rgba(86,159,86, 0.4);
-    background-blend-mode: multiply; */
     background-size: cover;
     height: 8vh;
     display: flex;
@@ -121,56 +119,6 @@ header::before{
 }
 /* End Frame */
 
-/* features-banner-container */
-.features-set-container{
-    display: flex;
-    flex-direction: column;
-}
-
-.features-set-container .feature-container:nth-child(even){
-    background-color: rgba(115, 115, 115, 0.17);
-    justify-content: flex-end;
-}
-
-.features-set-container .feature-container:nth-child(even) img{
-    order: 2;
-}
-
-.features-set-container .feature-container:nth-child(even) .feature-details{
-    justify-content: flex-end;
-    width: fit-content;
-}
-
-
-.feature-container{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    padding: 4rem 2rem;
-    width: 100%;
-    justify-content: flex-start;
-}
-
-.feature-image{
-    width: 10.8rem;
-    height: 10.8rem;
-    border-radius: 50%;
-}
-
-.feature-details{
-    display: flex;
-    flex-direction: column;
-}
-
-.feature-details h1{
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-}
-
-.feature-details p{
-    font-size: 1.4rem;
-}
-/* End features-banner-container */
 
 /* main-conainer, slider */
 .main-container{
@@ -180,63 +128,6 @@ header::before{
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-}
-
-.main-container-slider{
-    height: 74vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
-}
-
-.slider-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-.slider{
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    width: var(--slider-width);
-    height: var(--slider-height);
-    border: 0.5rem solid #2D4C3A;
-    border-radius: 5%;
-    row-gap: 2rem;
-}
-
-.slider-container{
-    display: flex;
-    width: fit-content;
-    height: var(--slider-height);
-    position: relative;
-    z-index: -1;
-    animation: carousel 45s linear infinite;
-}
-
-.slider-container video{
-    width: var(--slider-width);
-    height: var(--slider-height);
-}
-
-.slider-controls{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 10rem;
-    align-self: center;
-}
-
-.slider-controls button{
-    cursor: pointer;
-    border: none;
-}
-
-.slider-controls button img{
-    width: 2rem;
 }
 
 .main-container-recommendations,
