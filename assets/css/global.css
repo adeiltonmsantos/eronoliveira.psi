@@ -28,7 +28,7 @@ header{
     flex-direction: column;
     justify-content: center;
     padding: 1rem 2rem;
-    width: 100vw;
+    width: 100%;
 }
 
 header::before{
@@ -291,7 +291,7 @@ header::before{
     gap: 1.5rem;
 }
 
-.profile-container, .consultations-container{
+.profile-container, .consultations-container, .instruments-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -299,14 +299,16 @@ header::before{
     gap: 1.5rem;
 }
 
-.profile-container h1, .consultations-container h1{
+.profile-container h1, .consultations-container h1, .instruments-container h1{
     font-size: 2rem;
     margin: 4rem 0 1.5rem;
+    text-align: center;
 }
 
 .images-container{
     display: flex;
     gap: 2rem;
+    position: relative;
 }
 
 .image-container-left, .image-container-right{
@@ -341,6 +343,13 @@ header::before{
 }
 
 /* Consultations styles */
+.consultations-card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
 .consultations-card{
     display: flex;
     align-items: center;
@@ -389,6 +398,90 @@ header::before{
     color: rgb(23, 23, 145);
 }
 
+/* Instruments styles */
+.instruments{
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 0 1.7rem;
+    background-color: #f2f4f1;
+}
+
+.instruments-container{
+    margin-bottom: 4rem;
+}
+
+.instruments-container h1{
+    font-size: 2rem;
+    margin: 0;
+}
+
+.instruments-container h2{
+    font-size: 1.6rem;
+    font-weight: normal;
+    text-align: center;
+    width: 30.6rem;
+}
+
+.instruments-card-container{
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1.5rem;
+}
+
+.instruments-card{
+    display: flex;
+    flex-direction: column;
+    width: 33.2rem;
+    height: 18.2rem;
+    background-color: #69957030;
+    border-radius: 1rem;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.instruments-card h1{
+    font-size: 1.6rem;
+    margin: 0;
+    text-align: center;
+}
+
+.instruments-card-details{
+    display: flex;
+    justify-content: space-between;
+}
+
+.instruments-card-details p{
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+.instruments-card-details img{
+    width: 9.5rem;
+    height: 14.2rem;
+}
+
+.instruments-card-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    width: 20.2rem;
+    padding-bottom: 1rem;
+}
+
+.button-instruments-card{
+    background-color: #4B592E;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 2rem;
+    width: 13.9rem;
+    height: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /* Responsividade para smartfone quando girar tela */
@@ -480,8 +573,20 @@ header::before{
         width: 45rem;
     }
 
+    .consultations-card{
+        width: 37.1rem;
+        height: 20.8rem;
+        justify-content: space-between;
+    }
+
+    .consultations-card-details{
+        width: 22.3rem;
+    }
+
     .profile-container h1, .consultations-container h1{
         font-size: 3rem;
+        line-height: 3rem;
+        margin: 0;
     }
 }
 
@@ -509,8 +614,8 @@ header::before{
     }
 
     .consultations-card{
-        width: 52.9rem;
-        height: 29.8rem;
+        width: 50rem;
+        height: 28rem;
         gap: 1.5rem;
         justify-content: center;
         align-items: center;
@@ -544,8 +649,7 @@ header::before{
     }
 
     .consultations-card-container{
-        display: flex;
-        gap: 3rem;
+        flex-direction: row;
     }
 
 }
