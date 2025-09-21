@@ -137,7 +137,7 @@ header::before{
 }
 
 .main-container-recommendations{
-    gap: 3rem;
+    gap: 1.5rem;
     padding: 3rem 2rem;
 }
 
@@ -163,8 +163,8 @@ header::before{
 }
 
 .recomendation-card img{
-    width: 10.7rem;
-    height: 10.9rem;
+    width: 9rem;
+    height: 9rem;
 }
 
 .recomendation-card p{
@@ -180,6 +180,7 @@ header::before{
     background-color: #f2f4f1;
     gap: 1.5rem;
     padding-bottom: 4rem;
+    position: relative;
 }
 
 .profile-container, .consultations-container, .instruments-container{
@@ -201,6 +202,7 @@ header::before{
     display: flex;
     gap: 2rem;
     position: relative;
+    overflow: hidden;
 }
 
 .image-container-left, .image-container-right{
@@ -439,6 +441,7 @@ header::before{
     }
 }
 
+/* Tablets */
 @media screen and (min-width: 700px){
     header{
         background-size: 40%;
@@ -510,27 +513,38 @@ header::before{
     }
 }
 
+/* Notebooks e computadores */
 @media screen and (min-width: 1080px){
     header{
         background-size: 25%;
     }
 
-    .about-card:nth-child(3), .about-card:nth-child(5){
-        align-self: flex-start;
-        margin-left: 20%;
+    .frame-banner h1{
+        width: 25rem;
     }
 
-    .about-card:nth-child(4), .about-card:nth-child(6){
-        align-self: flex-end;
-        margin-right: 20%;
+    .image-container-center{
+        width: 45rem;
     }
 
     .image-container-left, .image-container-right{
         display: block;
     }
 
-    .image-container-right{
-        transform: scaleX(-1);
+    #left-bookcase, #right-bookcase{
+        width: 23.4rem;
+        height: 71.2rem;
+        position: absolute;
+        top: 10rem;
+        z-index: 5;
+    }
+
+    #left-bookcase{
+        left: 0;
+    }
+
+    #right-bookcase{
+        right: 0;
     }
 
     .consultations-grid{
