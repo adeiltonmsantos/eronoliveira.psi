@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/slider.css">
     <link rel="stylesheet" href="assets/css/instruments.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +67,7 @@
         </p>
 
         <div class="instruments-container">
-            <div class="instruments-card instruments-container-card">
+            <div id="inst-tdah" class="instruments-card instruments-container-card">
                 <h1>Baralho TDAH</h1>
                 <div class="instruments-card-details">
                     <div class="instruments-card-text">
@@ -78,11 +79,251 @@
                     <img src="assets/img/instrumentos/card-baralho-tdah.png" alt="Imagem baralho TDAH">
                 </div>
             </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Digital: <span>R$ 90,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Física: <span>R$ 250,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="main-container-slider main-container-slider-instruments">
+                <div class="slider-section">
+                    <div class="slider">
+                        <div class="slider-container">
+                            <video src="assets/videos/slide-main-01.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-02.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-03.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-04.mp4" autoplay loop muted></video>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button id="prevBtn">
+                            <img src="assets/img/slider-img/rewind.png" alt="Slide anterior">
+                        </button>
+                        <button id="nextBtn">
+                            <img src="assets/img/slider-img/forward.png" alt="Slide anterior">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="instruments-container">
+            <div id="inst-depressao" class="instruments-card instruments-container-card">
+                <h1>Baralho Depressão</h1>
+                <div class="instruments-card-details">
+                    <div class="instruments-card-text">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab rerum aliquam accusantium
+                            suscipit consequatur
+                        </p>
+                    </div>
+                    <img src="assets/img/instrumentos/card-baralho-depressao.png" alt="Imagem baralho TDAH">
+                </div>
+            </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Digital: <span>R$ 90,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Física: <span>R$ 250,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="main-container-slider main-container-slider-instruments">
+                <div class="slider-section">
+                    <div class="slider">
+                        <div class="slider-container">
+                            <video src="assets/videos/slide-main-01.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-02.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-03.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-04.mp4" autoplay loop muted></video>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button id="prevBtn">
+                            <img src="assets/img/slider-img/rewind.png" alt="Slide anterior">
+                        </button>
+                        <button id="nextBtn">
+                            <img src="assets/img/slider-img/forward.png" alt="Slide anterior">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="instruments-container">
+            <div id="inst-crencas" class="instruments-card instruments-container-card">
+                <h1>Baralho Jogo das Crenças</h1>
+                <div class="instruments-card-details">
+                    <div class="instruments-card-text">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab rerum aliquam accusantium
+                            suscipit consequatur
+                        </p>
+                    </div>
+                    <img src="assets/img/instrumentos/card-baralho-jogo_crenças.png" alt="Imagem baralho TDAH">
+                </div>
+            </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Digital: <span>R$ 90,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="instruments-order-container">
+                <div class="instrument-title">
+                    <h1>Mídia Física: <span>R$ 250,00</span></h1>
+                </div>
+                <div class="order-container-details">
+                    <div class="group-detail">
+                        <span>Quant.:</span>
+                        <div class="quant-control-container">
+                            <button class="btn-add">+</button>
+                            <span>0</span>
+                            <button class="btn-remove">-</button>
+                        </div>
+                    </div>
+                    <div class="group-detail">
+                        <span>Total:</span>
+                        <p>
+                            R$ 250,00
+                        </p>
+                    </div>
+                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                        alt="Carrinho de compras">
+                </div>
+            </div>
+
+            <div class="main-container-slider main-container-slider-instruments">
+                <div class="slider-section">
+                    <div class="slider">
+                        <div class="slider-container">
+                            <video src="assets/videos/slide-main-01.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-02.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-03.mp4" autoplay loop muted></video>
+                            <video src="assets/videos/slide-main-04.mp4" autoplay loop muted></video>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button id="prevBtn">
+                            <img src="assets/img/slider-img/rewind.png" alt="Slide anterior">
+                        </button>
+                        <button id="nextBtn">
+                            <img src="assets/img/slider-img/forward.png" alt="Slide anterior">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
 
-    <script src="assets/js/script-instruments.js"></script>
+    <script src="assets/js/slider.js"></script>
 </body>
 
 </html>

@@ -45,16 +45,108 @@
 
 /* instruments-container */
 .instruments-container{
-    background-color: #69957015;
+    background-color: #B6C9B7;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 0.1rem solid #213e1f;
     padding: 1.5rem;
+    gap: 1.5rem;
+    color: #192E18;
 }
 
+
+/* Class created to personalize 'instruments-card' */
 .instruments-container-card{
     width: 27rem;
-    background-color: #69957020;
+    height: fit-content;
+    background-color: #D2DCD2;
+    align-items: center;
+}
+
+.instruments-container-card .instruments-card-details{
+    gap: 1rem;
+    width: 92%;
+}
+
+.instruments-order-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem;
+    width: 26.6rem;
+    background-color: #a7bfa8;
+    border-radius: 1rem;
+}
+
+.instrument-title{
+    display: flex;
+    justify-content: center;
+}
+
+.instrument-title h1, .instrument-title span{
+    font-size: 1.6rem;
+}
+
+.instrument-title span{
+    font-weight: normal;
+}
+
+.order-container-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.group-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.group-detail span{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.img-cart-instruments{
+    height: 2.2rem;
+    cursor: pointer;
+}
+
+.quant-control-container{
+    display: flex;
+}
+
+.quant-control-container span{
+    padding: 0 0.5rem;
+    font-weight: normal;
+}
+
+.btn-add, .btn-remove{
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0 0.5rem;
+    border: 0.1rem solid #000;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.btn-add{
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+}
+
+.btn-remove{
+    border-top-right-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+}
+
+.main-container-slider-instruments{
+    height: 43.805rem;
 }
