@@ -1,0 +1,60 @@
+/* main-container-instruments section */
+.main-container-instruments{
+    padding: 2rem 3rem;
+    gap: 2rem;
+}
+
+.main-container-instruments p{
+    font-size: 1.6rem;
+    text-align: justify;
+    line-height: 2rem;
+}
+
+.main-title-instruments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.main-title-instruments h1{
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    width: 20rem;
+}
+
+.main-title-instruments img{
+    width: 2.5rem;
+}
+
+.cart-count-items{
+    background-color: #001EFF;
+    color: #fff;
+    font-weight: bold;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    padding: 0.1rem 0;
+    border-radius: 0.5rem;
+    position: absolute;
+    right: -0.3rem;
+    top: 2rem;
+}
+
+/* instruments-container */
+.instruments-container{
+    background-color: #69957015;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.1rem solid #213e1f;
+    padding: 1.5rem;
+}
+
+.instruments-container-card{
+    width: 27rem;
+    background-color: #69957020;
+}

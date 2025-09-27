@@ -38,7 +38,6 @@
     height: var(--slider-height);
     position: relative;
     z-index: -1;
-    /* animation: carousel 45s linear infinite; */
     transition: transform 1.5s ease-in-out;
 }
 
@@ -63,33 +62,3 @@
 .slider-controls button img{
     width: 2rem;
 }
-
-/* @keyframes carousel{
-    0%{
-        transform: translateX(0);
-    }
-    20%{
-        transform: translateX(0);
-    }
-    25%{
-        transform: translateX(calc(-1 * var(--slider-width)));
-    }
-    45%{
-        transform: translateX(calc(-1 * var(--slider-width)));
-    }
-    50%{
-        transform: translateX(calc(-2 * var(--slider-width)));
-    }
-    70%{
-        transform: translateX(calc(-2 * var(--slider-width)));
-    }
-    75%{
-        transform: translateX(calc(-3 * var(--slider-width)));
-    }
-    95%{
-        transform: translateX(calc(-3 * var(--slider-width)));
-    }
-    100%{
-        transform: translateX(calc(-4 * var(--slider-width)));
-    }
-} */
