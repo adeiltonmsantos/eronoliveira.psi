@@ -3,5 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const sliderSection = document.querySelector('.slider-section');
 
     // Automating the slider
-    automatizeSlider(sliderSection);
+    if (sliderSection && typeof automateSliders === 'function') {
+        automateSliders(sliderSection);
+    }
 })

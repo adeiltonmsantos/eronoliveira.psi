@@ -1,4 +1,4 @@
-function automatizeSliders(sliderSection){
+function automateSliders(sliderSection){
     // Selecionando o container dos vídeos
     const sliderContainer = sliderSection.querySelector('.slider-container');
 

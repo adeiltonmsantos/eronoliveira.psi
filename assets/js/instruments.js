@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                 slides[i].src = instrument.url_medias[i];
             }
             
-            automatizeSliders(sliderSection);
+            automateSliders(sliderSection);
             instrumentsContainer.appendChild(instrumentDiv);
 
         }));
