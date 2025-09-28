@@ -1,16 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+function automatizeSliders(sliderSection){
     // Selecionando o container dos vídeos
-    const sliderContainer = document.querySelector('.slider-container');
+    const sliderContainer = sliderSection.querySelector('.slider-container');
 
     // Selecionando o array com os vídeos do slider
-    const videos = document.querySelectorAll('.slider-container video');
+    const videos = sliderSection.querySelectorAll('.slider-container video');
 
     // Selecionando o botão de avançar
-    const nextButton = document.getElementById('nextBtn');
+    const nextButton = sliderSection.querySelector('.nextBtn');
     
     // Selecionando o botão de voltar
-    const prevButton = document.getElementById('prevBtn');
+    const prevButton = sliderSection.querySelector('.prevBtn');
 
     // Definindo o ponteiro do vídeo atual do slider
     let currentVideo = 0;
@@ -62,4 +61,4 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(videoTimer);
         videoTimer = setInterval(nextVideo, displayTime);
     }
-});
+}

@@ -79,16 +79,16 @@
     border-radius: 1rem;
 }
 
-.instrument-title{
+.instrument-media-option{
     display: flex;
     justify-content: center;
 }
 
-.instrument-title h1, .instrument-title span{
+.instrument-media-option h1, .instrument-media-option span{
     font-size: 1.6rem;
 }
 
-.instrument-title span{
+.instrument-media-option span{
     font-weight: normal;
 }
 
