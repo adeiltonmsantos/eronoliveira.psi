@@ -43,5 +43,35 @@
             "assets/slides/inst-crencas/slide-main-03.mp4",
             "assets/slides/inst-crencas/slide-main-04.mp4"
         ]
+    },
+    {
+        "id": "inst-tea",
+        "h1": "Recurso TEA",
+        "resume": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab rerum aliquam accusantium suscipit consequatur",
+        "img_src": "assets/img/instrumentos/card-baralho-jogo_crenças.png",
+        "img_alt": "Recurso TEA",
+        "price_digital_media": "R$ 95,00",
+        "price_physical_media": "R$ 260,00",
+        "url_medias": [
+            "assets/slides/inst-crencas/slide-main-01.mp4",
+            "assets/slides/inst-crencas/slide-main-02.mp4",
+            "assets/slides/inst-crencas/slide-main-03.mp4",
+            "assets/slides/inst-crencas/slide-main-04.mp4"
+        ]
+    },
+    {
+        "id": "inst-tod",
+        "h1": "Recurso TOD",
+        "resume": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab rerum aliquam accusantium suscipit consequatur",
+        "img_src": "assets/img/instrumentos/card-baralho-jogo_crenças.png",
+        "img_alt": "Imagem Recurso TOD",
+        "price_digital_media": "R$ 100,00",
+        "price_physical_media": "R$ 270,00",
+        "url_medias": [
+            "assets/slides/inst-crencas/slide-main-01.mp4",
+            "assets/slides/inst-crencas/slide-main-02.mp4",
+            "assets/slides/inst-crencas/slide-main-03.mp4",
+            "assets/slides/inst-crencas/slide-main-04.mp4"
+        ]
     }
 ]
