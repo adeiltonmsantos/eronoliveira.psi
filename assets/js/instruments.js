@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () =>{
     
     // Main container for each instrument
-    const instrumentsContainer = document.querySelector('section.main-container.main-container-instruments');
+    const instrumentsContainer = document.querySelector('.instruments-list-container');
     
     // Content for each instrument container
     const content = `
@@ -26,15 +26,15 @@ window.addEventListener('DOMContentLoaded', () =>{
                     <div class="group-detail">
                         <span>Quant.:</span>
                         <div class="quant-control-container">
-                            <button class="btn-add">+</button>
-                            <span>0</span>
                             <button class="btn-remove">-</button>
+                            <span>0</span>
+                            <button class="btn-add">+</button>
                         </div>
                     </div>
                     <div class="group-detail">
                         <span>Total:</span>
-                        <p>C
-                            R$ 250,00
+                        <p>
+                            R$ 0,00
                         </p>
                     </div>
                     <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
@@ -50,15 +50,15 @@ window.addEventListener('DOMContentLoaded', () =>{
                     <div class="group-detail">
                         <span>Quant.:</span>
                         <div class="quant-control-container">
-                            <button class="btn-add">+</button>
-                            <span>0</span>
                             <button class="btn-remove">-</button>
+                            <span>0</span>
+                            <button class="btn-add">+</button>
                         </div>
                     </div>
                     <div class="group-detail">
                         <span>Total:</span>
                         <p>
-                            R$ 250,00
+                            R$ 0,00
                         </p>
                     </div>
                     <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
