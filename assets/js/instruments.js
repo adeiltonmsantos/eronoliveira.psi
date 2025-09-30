@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 
             <div class="instruments-order-container">
                 <div class="instrument-media-option">
-                    <h1>Mídia Digital: <span>R$ 90,00</span></h1>
+                    <h1>Mídia Digital: <span></span></h1>
                 </div>
                 <div class="order-container-details">
                     <div class="group-detail">
@@ -33,9 +33,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                     </div>
                     <div class="group-detail">
                         <span>Total:</span>
-                        <p>
-                            R$ 0,00
-                        </p>
+                        <p>R$ 0,00</p>
                     </div>
                     <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
                         alt="Carrinho de compras">
@@ -44,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 
             <div class="instruments-order-container">
                 <div class="instrument-media-option">
-                    <h1>Mídia Física: <span>R$ 250,00</span></h1>
+                    <h1>Mídia Física: <span></span></h1>
                 </div>
                 <div class="order-container-details">
                     <div class="group-detail">
@@ -57,9 +55,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                     </div>
                     <div class="group-detail">
                         <span>Total:</span>
-                        <p>
-                            R$ 0,00
-                        </p>
+                        <p>R$ 0,00</p>
                     </div>
                     <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
                         alt="Carrinho de compras">
@@ -115,10 +111,10 @@ window.addEventListener('DOMContentLoaded', () =>{
             const price = instrumentDiv.querySelectorAll('.instruments-order-container .instrument-media-option h1');
 
             // Definig price of digital media
-            price[0].textContent = 'Mídia Digital: R$ ' + instrument.price_digital_media;
+            price[0].textContent = 'Mídia Digital: ' + instrument.price_digital_media;
 
             // Definig price of physical media
-            price[1].textContent = 'Mídia Física: R$ ' + instrument.price_physical_media;
+            price[1].textContent = 'Mídia Física: ' + instrument.price_physical_media;
 
             // Naming slider section with instrument id
             const sliderSection = instrumentDiv.querySelector('.slider-section');
@@ -131,10 +127,81 @@ window.addEventListener('DOMContentLoaded', () =>{
                 slides[i].src = instrument.url_medias[i];
             }
             
+            // Automating sliders
             automateSliders(sliderSection);
             instrumentsContainer.appendChild(instrumentDiv);
 
-        }));
+            // Array with instruments cards
+            const instrumentCards = document.querySelectorAll('.instruments-container')
+
+            instrumentCards.forEach(card => {
+                
+                // console.log(card)
+
+                // Card id
+                const idInstrument = card.querySelector('.instruments-card.instruments-container-card').id;
+
+                // Selecting containers with digital and physical data of a card
+                const mediaContainers = card.querySelectorAll('.instruments-order-container');
+
+                // Digital data container
+                const digitalContainer = mediaContainers[0];
+
+                // Price of digital media
+                const priceDigital = digitalContainer.querySelector('.instrument-media-option h1').textContent;
+                let valuePriceDigital = priceDigital.split('R$ ')[1].replace(',', '.');
+                valuePriceDigital = parseFloat(priceDigital);
+
+                // Span with the total quantity
+                const totalDigital = digitalContainer.querySelector('.quant-control-container span')
+                let valueTotalDigital = parseInt(totalDigital.textContent);
+
+                // Span with total value in R$
+                const totalInReais = digitalContainer.querySelector('.order-container-details .group-detail p');
+
+
+                // Button to increase quantity
+                const btnAdd = digitalContainer.querySelector('.quant-control-container .btn-add')
+
+                btnAdd.addEventListener('click', () => {
+                    if(parseInt(valueTotalDigital) === 0){
+                        totalDigital.textContent = 1;
+                        valueTotalDigital = 1;
+                    }
+                });
+                
+                // Button to decrease quantity
+                const btnRemove = digitalContainer.querySelector('.quant-control-container .btn-remove');
+
+                btnRemove.addEventListener('click', () => {
+                    if(parseInt(valueTotalDigital) === 1){
+                        totalDigital.textContent = 0;
+                        valueTotalDigital = 0;
+                    }
+                });
+
+
+
+                console.log(
+                    `
+                        Id: ${idInstrument}
+                        Preço digital: ${priceDigital}
+                        Botão de adicionar: ${btnAdd}
+                        Botão de remover: ${btnRemove}
+                        Span com a quantidade: ${totalDigital}
+                        
+                    `
+                )
+
+                // Physical data container
+                // const physicalContainer = mediaContainers[1];
+
+
+
+
+            });
+
+        }))
     
 
 })
