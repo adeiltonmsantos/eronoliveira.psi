@@ -129,77 +129,88 @@ window.addEventListener('DOMContentLoaded', () =>{
             
             // Automating sliders
             automateSliders(sliderSection);
+
             instrumentsContainer.appendChild(instrumentDiv);
 
             // Array with instruments cards
             const instrumentCards = document.querySelectorAll('.instruments-container')
 
-            instrumentCards.forEach(card => {
+            // instrumentCards.forEach(card => {
                 
-                // console.log(card)
+            //     // Card id
+            //     const idInstrument = card.querySelector('.instruments-card.instruments-container-card').id;
 
-                // Card id
-                const idInstrument = card.querySelector('.instruments-card.instruments-container-card').id;
+            //     // Selecting containers with digital and physical data of a card
+            //     const mediaContainers = card.querySelectorAll('.instruments-order-container');
 
-                // Selecting containers with digital and physical data of a card
-                const mediaContainers = card.querySelectorAll('.instruments-order-container');
+            //     // Digital data container
+            //     const digitalContainer = mediaContainers[0];
 
-                // Digital data container
-                const digitalContainer = mediaContainers[0];
+            //     // Physical data container
+            //     const physicalContainer = mediaContainers[1];
 
-                // Price of digital media
-                const priceDigital = digitalContainer.querySelector('.instrument-media-option h1').textContent;
-                let valuePriceDigital = priceDigital.split('R$ ')[1].replace(',', '.');
-                valuePriceDigital = parseFloat(priceDigital);
+            //     // Price of digital media
+            //     const priceDigital = digitalContainer.querySelector('.instrument-media-option h1').textContent;
+            //     let valuePriceDigital = priceDigital.split('R$ ')[1].replace(',', '.');
+            //     valuePriceDigital = parseFloat(valuePriceDigital);
 
-                // Span with the total quantity
-                const totalDigital = digitalContainer.querySelector('.quant-control-container span')
-                let valueTotalDigital = parseInt(totalDigital.textContent);
+            //     // Price of physical media
+            //     const pricePhysical = physicalContainer.querySelector('.instrument-media-option h1').textContent;
+            //     let valuePricePhysical = pricePhysical.split('R$ ')[1].replace(',', '.');
+            //     valuePricePhysical = parseFloat(valuePricePhysical);
 
-                // Span with total value in R$
-                const totalInReais = digitalContainer.querySelector('.order-container-details .group-detail p');
+            //     // Span with the total quantity of digital media
+            //     const totalDigital = digitalContainer.querySelector('.quant-control-container span')
+            //     let valueTotalDigital = parseInt(totalDigital.textContent);
 
+            //     // Span with the total quantity of physical media
+            //     const totalPhysical = physicalContainer.querySelector('.quant-control-container span')
+            //     let valueTotalPhysical = parseInt(totalPhysical.textContent);
 
-                // Button to increase quantity
-                const btnAdd = digitalContainer.querySelector('.quant-control-container .btn-add')
+            //     // Span with total value of digital media in R$
+            //     const totalDigitalInReais = digitalContainer.querySelector('.order-container-details .group-detail p');
 
-                btnAdd.addEventListener('click', () => {
-                    if(parseInt(valueTotalDigital) === 0){
-                        totalDigital.textContent = 1;
-                        valueTotalDigital = 1;
-                    }
-                });
+            //     // Span with total value of physical media in R$
+            //     const totalPhysicalInReais = physicalContainer.querySelector('.order-container-details .group-detail p');
+
+            //     // Button to increase quantity of digital media
+            //     const btnAddDig = digitalContainer.querySelector('.quant-control-container .btn-add')
+
+            //     btnAddDig.addEventListener('click', () => {
+            //         if(parseInt(valueTotalDigital) === 0){
+            //             totalDigital.textContent = 1;
+            //             valueTotalDigital = 1;
+            //             totalDigitalInReais.textContent = `R$ ${valueTotalDigital * valuePriceDigital}`;
+            //         }
+            //     });
                 
-                // Button to decrease quantity
-                const btnRemove = digitalContainer.querySelector('.quant-control-container .btn-remove');
+            //     // Button to increase quantity of physical media
+            //     const btnAddPhy = physicalContainer.querySelector('.quant-control-container .btn-add')
 
-                btnRemove.addEventListener('click', () => {
-                    if(parseInt(valueTotalDigital) === 1){
-                        totalDigital.textContent = 0;
-                        valueTotalDigital = 0;
-                    }
-                });
+            //     btnAddPhy.addEventListener('click', () => {
+            //         if(parseInt(valueTotalPhysical) === 0){
+            //             totalPhysical.textContent = 1;
+            //             valueTotalPhysical = 1;
+            //             totalPhysicalInReais.textContent = `R$ ${valueTotalPhysical * valuePricePhysical}`;
+            //         }else{
+            //             console.log(totalPhysical.textContent + ' ' + idInstrument)
+            //             totalPhysical.textContent = parseInt(totalPhysical.textContent) + 1;
+            //             valueTotalPhysical = parseInt(totalPhysical.textContent);
+            //         }
+            //     });
+                
+            //     // Button to decrease quantity
+            //     const btnRemoveDig = digitalContainer.querySelector('.quant-control-container .btn-remove');
 
+            //     btnRemoveDig.addEventListener('click', () => {
+            //         if(parseInt(valueTotalDigital) === 1){
+            //             totalDigital.textContent = 0;
+            //             valueTotalDigital = 0;
+            //             totalDigitalInReais.textContent = `R$ ${valueTotalDigital * valuePriceDigital}`;
+            //         }
+            //     });
 
-
-                console.log(
-                    `
-                        Id: ${idInstrument}
-                        Preço digital: ${priceDigital}
-                        Botão de adicionar: ${btnAdd}
-                        Botão de remover: ${btnRemove}
-                        Span com a quantidade: ${totalDigital}
-                        
-                    `
-                )
-
-                // Physical data container
-                // const physicalContainer = mediaContainers[1];
-
-
-
-
-            });
+            // });
 
         }))
     
