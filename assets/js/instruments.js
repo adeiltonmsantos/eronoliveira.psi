@@ -132,85 +132,109 @@ window.addEventListener('DOMContentLoaded', () =>{
 
             instrumentsContainer.appendChild(instrumentDiv);
 
-            // Array with instruments cards
-            const instrumentCards = document.querySelectorAll('.instruments-container')
+            // Selecting containers of digital and physycal order data
+            const mediaOrderContainers = instrumentDiv.querySelectorAll('.instruments-order-container');
+            
+            // **********************************************
+            // Selecting all the containers of digital media
+            // **********************************************
+            
+            // Selecting digital order data container
+            const digitalOrderContainer = mediaOrderContainers[0];
 
-            // instrumentCards.forEach(card => {
-                
-            //     // Card id
-            //     const idInstrument = card.querySelector('.instruments-card.instruments-container-card').id;
+            // Selecting digital price container
+            const priceDigital = digitalOrderContainer.querySelector('.instrument-media-option h1');
 
-            //     // Selecting containers with digital and physical data of a card
-            //     const mediaContainers = card.querySelectorAll('.instruments-order-container');
+            // Just unitary value of digital media price
+            const valuePriceDigital = parseFloat(priceDigital.textContent.split('R$ ')[1].replace(',', '.'));
 
-            //     // Digital data container
-            //     const digitalContainer = mediaContainers[0];
+            // Selecting digital quantity container
+            const quantDigital = digitalOrderContainer.querySelector('.quant-control-container span');
+            
+            // Just value of quantity of digital media
+            let valueQuantDigital = parseInt(quantDigital.textContent);
 
-            //     // Physical data container
-            //     const physicalContainer = mediaContainers[1];
+            // Selecting digital total value container
+            const totalDigital = digitalOrderContainer.querySelector('.order-container-details .group-detail p');
 
-            //     // Price of digital media
-            //     const priceDigital = digitalContainer.querySelector('.instrument-media-option h1').textContent;
-            //     let valuePriceDigital = priceDigital.split('R$ ')[1].replace(',', '.');
-            //     valuePriceDigital = parseFloat(valuePriceDigital);
+            // Just total value of digital media
+            let valueTotalDigital = valuePriceDigital * valueQuantDigital;
 
-            //     // Price of physical media
-            //     const pricePhysical = physicalContainer.querySelector('.instrument-media-option h1').textContent;
-            //     let valuePricePhysical = pricePhysical.split('R$ ')[1].replace(',', '.');
-            //     valuePricePhysical = parseFloat(valuePricePhysical);
+            // Selecting button to add quantity of digital media
+            const btnAddDig = digitalOrderContainer.querySelector('.quant-control-container .btn-add');
 
-            //     // Span with the total quantity of digital media
-            //     const totalDigital = digitalContainer.querySelector('.quant-control-container span')
-            //     let valueTotalDigital = parseInt(totalDigital.textContent);
+            // Assigning click event to add button
+            btnAddDig.addEventListener('click', () => {
+                if(valueQuantDigital === 0){
+                    valueQuantDigital++;
+                    quantDigital.textContent = valueQuantDigital;
+                    valueTotalDigital = valuePriceDigital * valueQuantDigital;
+                    totalDigital.textContent = `R$ ${valueTotalDigital.toFixed(2)}`;
+                }
+            })
 
-            //     // Span with the total quantity of physical media
-            //     const totalPhysical = physicalContainer.querySelector('.quant-control-container span')
-            //     let valueTotalPhysical = parseInt(totalPhysical.textContent);
+            // Selecting button to reduce quantity of digital media
+            const btnRemoveDig = digitalOrderContainer.querySelector('.quant-control-container .btn-remove');
 
-            //     // Span with total value of digital media in R$
-            //     const totalDigitalInReais = digitalContainer.querySelector('.order-container-details .group-detail p');
+            // Assigning click event to reduce button
+            btnRemoveDig.addEventListener('click', () => {
+                if(valueQuantDigital === 1){
+                    valueQuantDigital--;
+                    quantDigital.textContent = valueQuantDigital;
+                    totalDigital.textContent = 'R$ 0,00';
+                }
+            })
 
-            //     // Span with total value of physical media in R$
-            //     const totalPhysicalInReais = physicalContainer.querySelector('.order-container-details .group-detail p');
+            // **********************************************
+            // Selecting all the containers of physical media
+            // **********************************************
 
-            //     // Button to increase quantity of digital media
-            //     const btnAddDig = digitalContainer.querySelector('.quant-control-container .btn-add')
+            // Selecting physical order data container
+            const physicalOrderContainer = mediaOrderContainers[1];
 
-            //     btnAddDig.addEventListener('click', () => {
-            //         if(parseInt(valueTotalDigital) === 0){
-            //             totalDigital.textContent = 1;
-            //             valueTotalDigital = 1;
-            //             totalDigitalInReais.textContent = `R$ ${valueTotalDigital * valuePriceDigital}`;
-            //         }
-            //     });
-                
-            //     // Button to increase quantity of physical media
-            //     const btnAddPhy = physicalContainer.querySelector('.quant-control-container .btn-add')
+            // Selecting physical price container
+            const pricePhysical = physicalOrderContainer.querySelector('.instrument-media-option h1');
 
-            //     btnAddPhy.addEventListener('click', () => {
-            //         if(parseInt(valueTotalPhysical) === 0){
-            //             totalPhysical.textContent = 1;
-            //             valueTotalPhysical = 1;
-            //             totalPhysicalInReais.textContent = `R$ ${valueTotalPhysical * valuePricePhysical}`;
-            //         }else{
-            //             console.log(totalPhysical.textContent + ' ' + idInstrument)
-            //             totalPhysical.textContent = parseInt(totalPhysical.textContent) + 1;
-            //             valueTotalPhysical = parseInt(totalPhysical.textContent);
-            //         }
-            //     });
-                
-            //     // Button to decrease quantity
-            //     const btnRemoveDig = digitalContainer.querySelector('.quant-control-container .btn-remove');
+            // Just unitary value of physical media price
+            const valuePricePhysical = parseFloat(pricePhysical.textContent.split('R$ ')[1].replace(',', '.'));
 
-            //     btnRemoveDig.addEventListener('click', () => {
-            //         if(parseInt(valueTotalDigital) === 1){
-            //             totalDigital.textContent = 0;
-            //             valueTotalDigital = 0;
-            //             totalDigitalInReais.textContent = `R$ ${valueTotalDigital * valuePriceDigital}`;
-            //         }
-            //     });
+            // Selecting physical quantity container
+            const quantPhysical = physicalOrderContainer.querySelector('.quant-control-container span');
 
-            // });
+            // Just value of quantity of physical media
+            let valueQuantPhysical = parseInt(quantPhysical.textContent);
+
+            // Selecting physical total value container
+            const totalPhysical = physicalOrderContainer.querySelector('.order-container-details .group-detail p');
+
+            // Just total value of physical media
+            let valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
+
+            // Selecting button to add quantity of physical media
+            const btnAddPhy = physicalOrderContainer.querySelector('.quant-control-container .btn-add');
+
+            // Assigning click event to add button
+            btnAddPhy.addEventListener('click', () => {
+                if(valueQuantPhysical >= 0){
+                    valueQuantPhysical++;
+                    quantPhysical.textContent = valueQuantPhysical;
+                    valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
+                    totalPhysical.textContent = `R$ ${valueTotalPhysical.toFixed(2)}`;
+                }
+            })
+
+            // Selecting button to reduce quantity of digital media
+            const btnRemovePhy = physicalOrderContainer.querySelector('.quant-control-container .btn-remove');
+
+            // Assigning click event to reduce button
+            btnRemovePhy.addEventListener('click', () => {
+                if(valueQuantPhysical > 0){
+                    valueQuantPhysical--;
+                    quantPhysical.textContent = valueQuantPhysical;
+                    valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
+                    totalPhysical.textContent = `R$ ${valueTotalPhysical.toFixed(2)}`;
+                }
+            })
 
         }))
     
