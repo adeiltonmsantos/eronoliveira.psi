@@ -18,47 +18,41 @@ window.addEventListener('DOMContentLoaded', () =>{
                 </div>
             </div>
 
-            <div class="instruments-order-container">
-                <div class="instrument-media-option">
-                    <h1>Mídia Digital: <span></span></h1>
-                </div>
-                <div class="order-container-details">
-                    <div class="group-detail">
-                        <span>Quant.:</span>
-                        <div class="quant-control-container">
-                            <button class="btn-remove">-</button>
-                            <span>0</span>
-                            <button class="btn-add">+</button>
+            <div class="group-instruments-order-container">
+                <div class="instruments-order-container">
+                    <div class="instrument-media-option">
+                        <h1>Mídia Digital</h1>
+                    </div>
+                    <div class="order-container-details">
+                        <div class="group-detail">
+                            <span>Quant.:</span>
+                            <div class="quant-control-container">
+                                <button class="btn-remove">-</button>
+                                <span>0</span>
+                                <button class="btn-add">+</button>
+                            </div>
                         </div>
+                        <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                            alt="Carrinho de compras">
                     </div>
-                    <div class="group-detail">
-                        <span>Total:</span>
-                        <p>R$ 0,00</p>
-                    </div>
-                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                        alt="Carrinho de compras">
                 </div>
-            </div>
 
-            <div class="instruments-order-container">
-                <div class="instrument-media-option">
-                    <h1>Mídia Física: <span></span></h1>
-                </div>
-                <div class="order-container-details">
-                    <div class="group-detail">
-                        <span>Quant.:</span>
-                        <div class="quant-control-container">
-                            <button class="btn-remove">-</button>
-                            <span>0</span>
-                            <button class="btn-add">+</button>
+                <div class="instruments-order-container">
+                    <div class="instrument-media-option">
+                        <h1>Mídia Física</h1>
+                    </div>
+                    <div class="order-container-details">
+                        <div class="group-detail">
+                            <span>Quant.:</span>
+                            <div class="quant-control-container">
+                                <button class="btn-remove">-</button>
+                                <span>0</span>
+                                <button class="btn-add">+</button>
+                            </div>
                         </div>
+                        <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                            alt="Carrinho de compras">
                     </div>
-                    <div class="group-detail">
-                        <span>Total:</span>
-                        <p>R$ 0,00</p>
-                    </div>
-                    <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                        alt="Carrinho de compras">
                 </div>
             </div>
 
@@ -110,12 +104,6 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Selecting both containers with instruments-order-container
             const price = instrumentDiv.querySelectorAll('.instruments-order-container .instrument-media-option h1');
 
-            // Definig price of digital media
-            price[0].textContent = 'Mídia Digital: ' + instrument.price_digital_media;
-
-            // Definig price of physical media
-            price[1].textContent = 'Mídia Física: ' + instrument.price_physical_media;
-
             // Naming slider section with instrument id
             const sliderSection = instrumentDiv.querySelector('.slider-section');
 
@@ -146,7 +134,7 @@ window.addEventListener('DOMContentLoaded', () =>{
             const priceDigital = digitalOrderContainer.querySelector('.instrument-media-option h1');
 
             // Just unitary value of digital media price
-            const valuePriceDigital = parseFloat(priceDigital.textContent.split('R$ ')[1].replace(',', '.'));
+            // const valuePriceDigital = parseFloat(priceDigital.textContent.split('R$ ')[1].replace(',', '.'));
 
             // Selecting digital quantity container
             const quantDigital = digitalOrderContainer.querySelector('.quant-control-container span');
@@ -158,7 +146,7 @@ window.addEventListener('DOMContentLoaded', () =>{
             const totalDigital = digitalOrderContainer.querySelector('.order-container-details .group-detail p');
 
             // Just total value of digital media
-            let valueTotalDigital = valuePriceDigital * valueQuantDigital;
+            // let valueTotalDigital = valuePriceDigital * valueQuantDigital;
 
             // Selecting button to add quantity of digital media
             const btnAddDig = digitalOrderContainer.querySelector('.quant-control-container .btn-add');
@@ -168,8 +156,6 @@ window.addEventListener('DOMContentLoaded', () =>{
                 if(valueQuantDigital === 0){
                     valueQuantDigital++;
                     quantDigital.textContent = valueQuantDigital;
-                    valueTotalDigital = valuePriceDigital * valueQuantDigital;
-                    totalDigital.textContent = `R$ ${valueTotalDigital.toFixed(2)}`;
                 }
             })
 
@@ -181,7 +167,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                 if(valueQuantDigital === 1){
                     valueQuantDigital--;
                     quantDigital.textContent = valueQuantDigital;
-                    totalDigital.textContent = 'R$ 0,00';
+                    // totalDigital.textContent = 'R$ 0,00';
                 }
             })
 
@@ -195,9 +181,6 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Selecting physical price container
             const pricePhysical = physicalOrderContainer.querySelector('.instrument-media-option h1');
 
-            // Just unitary value of physical media price
-            const valuePricePhysical = parseFloat(pricePhysical.textContent.split('R$ ')[1].replace(',', '.'));
-
             // Selecting physical quantity container
             const quantPhysical = physicalOrderContainer.querySelector('.quant-control-container span');
 
@@ -207,9 +190,6 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Selecting physical total value container
             const totalPhysical = physicalOrderContainer.querySelector('.order-container-details .group-detail p');
 
-            // Just total value of physical media
-            let valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
-
             // Selecting button to add quantity of physical media
             const btnAddPhy = physicalOrderContainer.querySelector('.quant-control-container .btn-add');
 
@@ -218,8 +198,6 @@ window.addEventListener('DOMContentLoaded', () =>{
                 if(valueQuantPhysical >= 0){
                     valueQuantPhysical++;
                     quantPhysical.textContent = valueQuantPhysical;
-                    valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
-                    totalPhysical.textContent = `R$ ${valueTotalPhysical.toFixed(2)}`;
                 }
             })
 
@@ -231,8 +209,6 @@ window.addEventListener('DOMContentLoaded', () =>{
                 if(valueQuantPhysical > 0){
                     valueQuantPhysical--;
                     quantPhysical.textContent = valueQuantPhysical;
-                    valueTotalPhysical = valuePricePhysical * valueQuantPhysical;
-                    totalPhysical.textContent = `R$ ${valueTotalPhysical.toFixed(2)}`;
                 }
             })
 
