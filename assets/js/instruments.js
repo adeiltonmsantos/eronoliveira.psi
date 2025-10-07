@@ -25,7 +25,6 @@ window.addEventListener('DOMContentLoaded', () =>{
                     </div>
                     <div class="order-container-details">
                         <div class="group-detail">
-                            <span>Quant.:</span>
                             <div class="quant-control-container">
                                 <button class="btn-remove">-</button>
                                 <span>0</span>
@@ -33,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                             </div>
                         </div>
                         <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                            alt="Carrinho de compras">
+                            alt="Carrinho de compras" title="Adicionar ao orçamento">
                     </div>
                 </div>
 
@@ -43,7 +42,6 @@ window.addEventListener('DOMContentLoaded', () =>{
                     </div>
                     <div class="order-container-details">
                         <div class="group-detail">
-                            <span>Quant.:</span>
                             <div class="quant-control-container">
                                 <button class="btn-remove">-</button>
                                 <span>0</span>
@@ -51,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () =>{
                             </div>
                         </div>
                         <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                            alt="Carrinho de compras">
+                            alt="Carrinho de compras" title="Adicionar ao orçamento">
                     </div>
                 </div>
             </div>
