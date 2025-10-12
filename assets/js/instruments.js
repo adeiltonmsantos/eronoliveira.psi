@@ -2,7 +2,25 @@ window.addEventListener('DOMContentLoaded', () =>{
     
     // Main container for each instrument
     const instrumentsContainer = document.querySelector('.instruments-list-container');
+
+    // Array with instruments data added to cart in Local Storage
+    let cartInstruments = JSON.parse(localStorage.getItem('cartInstruments')) || [];
+
+    // Selecting span with quantity of items in cart
+    const cartQuantity = document.querySelector('.cart-count-items');
     
+    // Function to update cart quantity display
+    function updateCartQuantity() {
+        cartQuantity.textContent = cartInstruments.length;
+    }
+
+    // Function to increase cart quantity display
+    function increaseCartQuantityDisplay() {
+        cartQuantity.textContent = parseInt(cartQuantity.textContent) + 1;
+    }
+    
+    updateCartQuantity(); // Initial update of cart quantity display
+
     // Content for each instrument container
     const content = `
             <div id="#" class="instruments-card instruments-container-card">
@@ -52,7 +70,10 @@ window.addEventListener('DOMContentLoaded', () =>{
                             alt="Carrinho de compras" title="Adicionar ao orçamento">
                     </div>
                 </div>
+                
             </div>
+
+            <button class="btn-go-to-cart">IR PARA O CARRINHO</button>
 
             <div class="main-container-slider main-container-slider-instruments">
                 <div class="slider-section" id="#">
@@ -128,23 +149,11 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Selecting digital order data container
             const digitalOrderContainer = mediaOrderContainers[0];
 
-            // Selecting digital price container
-            const priceDigital = digitalOrderContainer.querySelector('.instrument-media-option h1');
-
-            // Just unitary value of digital media price
-            // const valuePriceDigital = parseFloat(priceDigital.textContent.split('R$ ')[1].replace(',', '.'));
-
             // Selecting digital quantity container
             const quantDigital = digitalOrderContainer.querySelector('.quant-control-container span');
             
             // Just value of quantity of digital media
             let valueQuantDigital = parseInt(quantDigital.textContent);
-
-            // Selecting digital total value container
-            const totalDigital = digitalOrderContainer.querySelector('.order-container-details .group-detail p');
-
-            // Just total value of digital media
-            // let valueTotalDigital = valuePriceDigital * valueQuantDigital;
 
             // Selecting button to add quantity of digital media
             const btnAddDig = digitalOrderContainer.querySelector('.quant-control-container .btn-add');
@@ -156,10 +165,10 @@ window.addEventListener('DOMContentLoaded', () =>{
                     quantDigital.textContent = valueQuantDigital;
                 }
             })
-
+            
             // Selecting button to reduce quantity of digital media
             const btnRemoveDig = digitalOrderContainer.querySelector('.quant-control-container .btn-remove');
-
+            
             // Assigning click event to reduce button
             btnRemoveDig.addEventListener('click', () => {
                 if(valueQuantDigital === 1){
@@ -168,6 +177,36 @@ window.addEventListener('DOMContentLoaded', () =>{
                     // totalDigital.textContent = 'R$ 0,00';
                 }
             })
+            
+            // Selecting button to add digital media to cart
+            const btnAddCartDig = digitalOrderContainer.querySelector('.order-container-details .img-cart-instruments');
+            
+            // Assigning click event to add to cart button
+            btnAddCartDig.addEventListener('click', () => {
+                // Checking if cart exists. If doesn't, create in Local Storage, only if quantity is 1
+                if(!localStorage.getItem('cartInstruments') && valueQuantDigital === 1){
+                    localStorage.setItem('cartInstruments', JSON.stringify([]));
+                }
+                
+                // Creating object with instrument data to add to cart
+                const item = {
+                    id: instrument.h1,
+                    type: 'Mídia Digital',
+                    img_src: instrument.img_src,
+                    quantity: valueQuantDigital,
+                }
+
+                // Adding digital media to cart only if quantity is 1 and not already added
+                if(valueQuantDigital === 1 && !(cartInstruments.some(item => item.id === instrument.h1 && item.type === 'Mídia Digital'))){
+                    cartInstruments.push(item);
+                    localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                    // Updating cart quantity display
+                    increaseCartQuantityDisplay();
+                    updateCartQuantity();
+                }
+
+            });
+
 
             // **********************************************
             // Selecting all the containers of physical media
@@ -176,17 +215,11 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Selecting physical order data container
             const physicalOrderContainer = mediaOrderContainers[1];
 
-            // Selecting physical price container
-            const pricePhysical = physicalOrderContainer.querySelector('.instrument-media-option h1');
-
             // Selecting physical quantity container
             const quantPhysical = physicalOrderContainer.querySelector('.quant-control-container span');
 
             // Just value of quantity of physical media
             let valueQuantPhysical = parseInt(quantPhysical.textContent);
-
-            // Selecting physical total value container
-            const totalPhysical = physicalOrderContainer.querySelector('.order-container-details .group-detail p');
 
             // Selecting button to add quantity of physical media
             const btnAddPhy = physicalOrderContainer.querySelector('.quant-control-container .btn-add');
@@ -209,6 +242,42 @@ window.addEventListener('DOMContentLoaded', () =>{
                     quantPhysical.textContent = valueQuantPhysical;
                 }
             })
+
+            // Selecting button to add physical media to cart
+            const btnAddCartPhy = physicalOrderContainer.querySelector('.order-container-details .img-cart-instruments');
+            
+            // Assigning click event to add to cart button
+            btnAddCartPhy.addEventListener('click', () => {
+                // Checking if cart exists. If doesn't, create in Local Storage, only if quantity is 1
+                if(!localStorage.getItem('cartInstruments') && valueQuantPhysical > 0){
+                    localStorage.setItem('cartInstruments', JSON.stringify([]));
+                }
+                
+                // Creating object with instrument data to add to cart
+                const item = {
+                    id: instrument.h1,
+                    type: 'Mídia Física',
+                    img_src: instrument.img_src,
+                    quantity: valueQuantPhysical,
+                }
+
+                // Searching if item already exists in cart. If exists, update quantity. If doesn't, add new item.
+                const idItem = cartInstruments.findIndex(item => item.id === instrument.h1 && item.type === 'Mídia Física');
+                if(idItem === -1 && valueQuantPhysical > 0){
+                    cartInstruments.push(item);
+                    localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                    // Updating cart quantity display
+                    increaseCartQuantityDisplay();
+                    updateCartQuantity();
+                }else{
+                    cartInstruments[idItem].quantity = valueQuantPhysical;
+                    localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                }
+
+                
+            });
+
+
 
         }))
     

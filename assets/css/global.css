@@ -519,6 +519,10 @@ header::before{
         background-size: 25%;
     }
 
+    .frame-banner{
+        height: 8.5vh;
+    }
+
     .frame-banner h1{
         width: 25rem;
     }

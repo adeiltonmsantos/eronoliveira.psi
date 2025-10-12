@@ -28,6 +28,7 @@
 
 .main-title-instruments img{
     width: 2.5rem;
+    cursor: pointer;
 }
 
 .instruments-list-container{
@@ -40,15 +41,16 @@
 .cart-count-items{
     background-color: #001EFF;
     color: #fff;
+    font-size: 1rem;
     font-weight: bold;
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     text-align: center;
     padding: 0.1rem 0;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     position: absolute;
-    right: -0.3rem;
-    top: 2rem;
+    right: -0.7rem;
+    top: 1.4rem;
 }
 
 /* instruments-container */
@@ -170,6 +172,17 @@
 
 .btn-add, .btn-remove{
     cursor: pointer;
+}
+
+.btn-go-to-cart{
+    width: 16.4rem;
+    height: 2.8rem;
+    background-color: #7C8F7D;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 1.4rem;
+    border: none;
 }
 
 .main-container-slider-instruments{
