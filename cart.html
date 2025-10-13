@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/slider.css">
+    <link rel="stylesheet" href="assets/css/instruments.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Kdam Thmor Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
+    <!-- Koho Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Alice Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+
+    <!-- Aclonica Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+
+    <title>Eron Oliveira - Psicóloga</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html">
+            <div class="info-banner">
+                <img src="assets/img/coração_branco.png" alt="Logo Eronilde Oliveira">
+                <div class="info-banner-details">
+                    <h1>ERONILDE OLIVEIRA</h1>
+                    <h3>PSICÓLOGA</h3>
+                    <h4>CRP 15/8487</h4>
+                </div>
+            </div>
+        </a>
+    </header>
+    <div class="frame-banner">
+        <img src="assets/img/meditation.png" alt="Ícone meditação">
+        <h1>
+            SAÚDE EMOCIONAL É ESSENCIAL
+        </h1>
+    </div>
+
+    <section class="main-container main-container-instruments">
+
+        <div class="main-title-instruments">
+            <h1>
+                ITENS DO SEU ORÇAMENTO
+            </h1>
+        </div>
+
+        <p>
+            Revise os itens selecionados. Se estiver tudo correto pressione o botão para enviar. Assim que possível
+            enviaremos seu orçamento
+        </p>
+
+        <form autocomplete="off">
+            <div class="form-cart-container">
+                <div class="group-input">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" placeholder="Digite seu nome completo">
+                </div>
+                <div class="group-input">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                </div>
+                <div class="group-input">
+                    <label for="email-confirm">E-mail</label>
+                    <input type="email" id="email-confirm" placeholder="Confirme seu e-mail">
+                </div>
+                <div class="group-input">
+                    <label for="cellphone">Celular</label>
+                    <input type="tel" id="cellphone" placeholder="Digite seu celular">
+                </div>
+                <div class="group-input">
+                    <button class="btn-form-cart" type="button">Cancelar</button>
+                    <button class="btn-form-cart" type="button">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="items-cart-container">
+            <div class="item-cart-group">
+                <div class="item-title-img">
+                    <h1>
+                        1. Baralho TDAH
+                    </h1>
+                    <img src="assets/img/instrumentos/card-baralho-tdah.png" alt="Baralho TDAH">
+                </div>
+                <div class="items-media-container">
+                    <div class="item-media">
+                        <h1>Mídia Digital</h1>
+                        <div class="quant-control">
+                            <button class="btn-remove">+</button>
+                            <span>0</span>
+                            <button class="btn-add">-</button>
+                        </div>
+                    </div>
+
+                    <div class="item-media">
+                        <h1>Mídia Física</h1>
+                        <div class="quant-control">
+                            <button class="btn-remove">+</button>
+                            <span>0</span>
+                            <button class="btn-add">-</button>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
+            </div>
+        </div>
+
+    </section>
+
+    <script src="assets/js/cart.js"></script>
+</body>
+
+</html>

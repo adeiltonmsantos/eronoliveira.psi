@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () =>{
     
     // Main container for each instrument
     const instrumentsContainer = document.querySelector('.instruments-list-container');
@@ -11,7 +11,9 @@ window.addEventListener('DOMContentLoaded', () =>{
     
     // Function to update cart quantity display
     function updateCartQuantity() {
-        cartQuantity.textContent = cartInstruments.length;
+        if (cartQuantity) {
+            cartQuantity.textContent = cartInstruments.length;
+        }
     }
 
     // Function to increase cart quantity display
@@ -137,7 +139,9 @@ window.addEventListener('DOMContentLoaded', () =>{
             // Automating sliders
             automateSliders(sliderSection);
 
-            instrumentsContainer.appendChild(instrumentDiv);
+            if(instrumentsContainer){
+                instrumentsContainer.appendChild(instrumentDiv);
+            }
 
             // Selecting containers of digital and physycal order data
             const mediaOrderContainers = instrumentDiv.querySelectorAll('.instruments-order-container');

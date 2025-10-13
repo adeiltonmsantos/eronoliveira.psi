@@ -1,3 +1,9 @@
+/* Header */
+.info-banner{
+    position: relative;
+}
+
+
 /* main-container-instruments section */
 .main-container-instruments{
     padding: 2rem 3rem;
@@ -28,7 +34,6 @@
 
 .main-title-instruments img{
     width: 2.5rem;
-    cursor: pointer;
 }
 
 .instruments-list-container{
