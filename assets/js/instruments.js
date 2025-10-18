@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 
             </div>
 
-            <button class="btn-go-to-cart">IR PARA O CARRINHO</button>
+            <button class="btn-go-to-cart btn-disabled">IR PARA O CARRINHO</button>
 
             <div class="main-container-slider main-container-slider-instruments">
                 <div class="slider-section" id="#">
@@ -106,6 +106,20 @@ document.addEventListener('DOMContentLoaded', () =>{
             const instrumentDiv = document.createElement('div');
             instrumentDiv.classList.add('instruments-container');
             instrumentDiv.innerHTML = content;
+
+            // Function to verify if cart is not empty to enable "Go to cart" button
+            function updateButtonGoToCart(){
+                const btnGoToCart = instrumentDiv.querySelector('.btn-go-to-cart');
+
+                console.log(btnGoToCart);
+                
+                if(cartInstruments.length > 0){
+                    btnGoToCart.classList.remove('btn-disabled');
+                }else{
+                    btnGoToCart.classList.add('btn-disabled');
+                }
+            }
+            updateButtonGoToCart();
 
             // Defining id value
             instrumentDiv.querySelector('.instruments-card.instruments-container-card').id = instrument.id;
@@ -211,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
             })
 
-            // Selecting button to add instrument and its medias to cart
+            // Selecting button to add instrument and its media quantities to cart
             const btnAddCartInstrument = instrumentDiv.querySelector('.img-cart-instruments');
 
             // Assigning click event to add to cart button
@@ -228,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 if(!localStorage.getItem('cartInstruments') && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
                     localStorage.setItem('cartInstruments', JSON.stringify([]));
                 }
-
+                
                 // Searching if item already exists in cart. If exists, update quantity. If doesn't, add new item.
                 const idItem = cartInstruments.findIndex(item => item.id === instrument.id);
                 if(idItem === -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
@@ -245,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     cartInstruments[idItem].quant_physical = valueQuantPhysical;
                     localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
 
-                // Removing item from cart if both quantities are zero
+                    // Removing item from cart if both quantities are zero
                 }else if(idItem !== -1 && (valueQuantDigital === 0 && valueQuantPhysical === 0)){
                     const updatedCart = cartInstruments.filter(item => item.id !== instrument.id);
                     localStorage.setItem('cartInstruments', JSON.stringify(updatedCart));
@@ -253,10 +267,21 @@ document.addEventListener('DOMContentLoaded', () =>{
                     // Updating cart quantity display
                     updateCartQuantity();
                 }
+                updateButtonGoToCart();
+                
             })
 
+            // Selecting "Go to cart" button
+            const btnGoToCart = instrumentDiv.querySelector('.btn-go-to-cart');
 
-        }))
-    
+            // Assigning click event to "Go to cart" button
+            btnGoToCart.addEventListener('click', () => {
+                if(cartInstruments.length > 0){
+                    window.location.href = 'cart.html';
+                }
+            })
+            
+        }
+    ));
 
 })

@@ -195,6 +195,11 @@
     border: none;
 }
 
+.btn-disabled{
+    background-color: #9d9b9b;
+    cursor: not-allowed;
+}
+
 .main-container-slider-instruments{
     height: 43.805rem;
 }
