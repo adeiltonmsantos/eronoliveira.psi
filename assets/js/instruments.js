@@ -110,9 +110,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             // Function to verify if cart is not empty to enable "Go to cart" button
             function updateButtonGoToCart(){
                 const btnGoToCart = instrumentDiv.querySelector('.btn-go-to-cart');
-
-                console.log(btnGoToCart);
-                
                 if(cartInstruments.length > 0){
                     btnGoToCart.classList.remove('btn-disabled');
                 }else{
@@ -254,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                 // Found item in cart, updating quantities
                 }else if (idItem !== -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
-                    console.log('Atualizando item no carrinho');
                     cartInstruments[idItem].quant_digital = valueQuantDigital;
                     cartInstruments[idItem].quant_physical = valueQuantPhysical;
                     localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
