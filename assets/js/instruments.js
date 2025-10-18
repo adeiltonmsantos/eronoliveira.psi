@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', () =>{
                                 <button class="btn-add">+</button>
                             </div>
                         </div>
-                        <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                            alt="Carrinho de compras" title="Adicionar ao orçamento">
                     </div>
                 </div>
 
@@ -68,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () =>{
                                 <button class="btn-add">+</button>
                             </div>
                         </div>
-                        <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
-                            alt="Carrinho de compras" title="Adicionar ao orçamento">
                     </div>
                 </div>
+                <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
+                    alt="Carrinho de compras" title="Adicionar ao orçamento">
                 
             </div>
 
@@ -121,9 +119,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             // Defining image of instrument (src and alt values)
             instrumentDiv.querySelector('.instruments-card-details img').src = instrument.img_src;
             instrumentDiv.querySelector('.instruments-card-details img').alt = instrument.img_alt;
-
-            // Selecting both containers with instruments-order-container
-            const price = instrumentDiv.querySelectorAll('.instruments-order-container .instrument-media-option h1');
 
             // Naming slider section with instrument id
             const sliderSection = instrumentDiv.querySelector('.slider-section');
@@ -178,40 +173,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                 if(valueQuantDigital === 1){
                     valueQuantDigital--;
                     quantDigital.textContent = valueQuantDigital;
-                    // totalDigital.textContent = 'R$ 0,00';
                 }
             })
             
-            // Selecting button to add digital media to cart
-            const btnAddCartDig = digitalOrderContainer.querySelector('.order-container-details .img-cart-instruments');
-            
-            // Assigning click event to add to cart button
-            btnAddCartDig.addEventListener('click', () => {
-                // Checking if cart exists. If doesn't, create in Local Storage, only if quantity is 1
-                if(!localStorage.getItem('cartInstruments') && valueQuantDigital === 1){
-                    localStorage.setItem('cartInstruments', JSON.stringify([]));
-                }
-                
-                // Creating object with instrument data to add to cart
-                const item = {
-                    id: instrument.h1,
-                    type: 'Mídia Digital',
-                    img_src: instrument.img_src,
-                    quantity: valueQuantDigital,
-                }
-
-                // Adding digital media to cart only if quantity is 1 and not already added
-                if(valueQuantDigital === 1 && !(cartInstruments.some(item => item.id === instrument.h1 && item.type === 'Mídia Digital'))){
-                    cartInstruments.push(item);
-                    localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
-                    // Updating cart quantity display
-                    increaseCartQuantityDisplay();
-                    updateCartQuantity();
-                }
-
-            });
-
-
             // **********************************************
             // Selecting all the containers of physical media
             // **********************************************
@@ -247,40 +211,49 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
             })
 
-            // Selecting button to add physical media to cart
-            const btnAddCartPhy = physicalOrderContainer.querySelector('.order-container-details .img-cart-instruments');
-            
+            // Selecting button to add instrument and its medias to cart
+            const btnAddCartInstrument = instrumentDiv.querySelector('.img-cart-instruments');
+
             // Assigning click event to add to cart button
-            btnAddCartPhy.addEventListener('click', () => {
-                // Checking if cart exists. If doesn't, create in Local Storage, only if quantity is 1
-                if(!localStorage.getItem('cartInstruments') && valueQuantPhysical > 0){
-                    localStorage.setItem('cartInstruments', JSON.stringify([]));
-                }
-                
-                // Creating object with instrument data to add to cart
+            btnAddCartInstrument.addEventListener('click', () => {
+                // Object with data to add to cart
                 const item = {
-                    id: instrument.h1,
-                    type: 'Mídia Física',
+                    id: instrument.id,
+                    quant_digital: valueQuantDigital,
+                    quant_physical: valueQuantPhysical,
                     img_src: instrument.img_src,
-                    quantity: valueQuantPhysical,
+                    h1: instrument.h1
+                }
+                // Checking if cart exists. If doesn't, create in Local Storage, only if quantity is 1
+                if(!localStorage.getItem('cartInstruments') && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
+                    localStorage.setItem('cartInstruments', JSON.stringify([]));
                 }
 
                 // Searching if item already exists in cart. If exists, update quantity. If doesn't, add new item.
-                const idItem = cartInstruments.findIndex(item => item.id === instrument.h1 && item.type === 'Mídia Física');
-                if(idItem === -1 && valueQuantPhysical > 0){
+                const idItem = cartInstruments.findIndex(item => item.id === instrument.id);
+                if(idItem === -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
                     cartInstruments.push(item);
                     localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
                     // Updating cart quantity display
                     increaseCartQuantityDisplay();
                     updateCartQuantity();
-                }else{
-                    cartInstruments[idItem].quantity = valueQuantPhysical;
+
+                // Found item in cart, updating quantities
+                }else if (idItem !== -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
+                    console.log('Atualizando item no carrinho');
+                    cartInstruments[idItem].quant_digital = valueQuantDigital;
+                    cartInstruments[idItem].quant_physical = valueQuantPhysical;
                     localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+
+                // Removing item from cart if both quantities are zero
+                }else if(idItem !== -1 && (valueQuantDigital === 0 && valueQuantPhysical === 0)){
+                    const updatedCart = cartInstruments.filter(item => item.id !== instrument.id);
+                    localStorage.setItem('cartInstruments', JSON.stringify(updatedCart));
+                    cartInstruments = updatedCart;
+                    // Updating cart quantity display
+                    updateCartQuantity();
                 }
-
-                
-            });
-
+            })
 
 
         }))
