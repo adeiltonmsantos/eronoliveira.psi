@@ -18,18 +18,18 @@ document.addEventListener('DOMContentLoaded', () =>{
                     <div class="item-media">
                         <h1>Mídia Digital</h1>
                         <div class="quant-control">
-                            <button class="btn-remove">+</button>
+                            <button class="btn-remove">-</button>
                             <span></span>
-                            <button class="btn-add">-</button>
+                            <button class="btn-add">+</button>
                         </div>
                     </div>
 
                     <div class="item-media">
                         <h1>Mídia Física</h1>
                         <div class="quant-control">
-                            <button class="btn-remove">+</button>
+                            <button class="btn-remove">-</button>
                             <span></span>
-                            <button class="btn-add">-</button>
+                            <button class="btn-add">+</button>
                         </div>
                     </div>
                 </div>
@@ -60,6 +60,75 @@ document.addEventListener('DOMContentLoaded', () =>{
         // Selecting span for the quantity of digital media
         quantitySpans[0].textContent = instrument.quant_digital;
         quantitySpans[1].textContent = instrument.quant_physical;
+
+        //Selecting add media buttons
+        const addButtons = itemDiv.querySelectorAll('.item-media .quant-control .btn-add');
+
+        // *******************************************************************************
+        // Handling digital media quantity changes
+        // *******************************************************************************
+
+        // Selecting add digital media button
+        const addDigitalButton = addButtons[0];
+
+        // Event listener for adding digital media
+        addDigitalButton.addEventListener('click', () => {
+            if(instrument.quant_digital === 0)
+                instrument.quant_digital += 1;
+                quantitySpans[0].textContent = instrument.quant_digital;
+                localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+        });
+
+        // Selecting reduce digital media quantity button
+        const removeDigitalButton = itemDiv.querySelectorAll('.item-media .quant-control .btn-remove')[0];
+
+        // Event listener for reducing digital media
+        removeDigitalButton.addEventListener('click', () => {
+            if (instrument.quant_digital > 0) {
+                instrument.quant_digital -= 1;
+                quantitySpans[0].textContent = instrument.quant_digital;
+                localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+            }
+        });
+
+        // *******************************************************************************
+        // Handling physical media quantity changes
+        // *******************************************************************************
+
+        // Selecting add physical media button
+        const addPhysicalButton = addButtons[1];
+
+        // Event listener for adding physical media
+        addPhysicalButton.addEventListener('click', () => {
+            instrument.quant_physical += 1;
+            quantitySpans[1].textContent = instrument.quant_physical;
+            localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+        });
+
+        // Selecting reduce physical media quantity button
+        const removePhysicalButton = itemDiv.querySelectorAll('.item-media .quant-control .btn-remove')[1];
+
+        // Event listener for reducing physical media
+        removePhysicalButton.addEventListener('click', () => {
+            if (instrument.quant_physical > 0) {
+                instrument.quant_physical -= 1;
+                quantitySpans[1].textContent = instrument.quant_physical;
+                localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+            }
+        });
+        
+        // *******************************************************************************
+        // Handling item removal from cart
+        // *******************************************************************************
+        const trashImg = itemDiv.querySelector('.img-trash');
+
+        // Event listener for removing item from cart
+        trashImg.addEventListener('click', () => {
+            const updatedCart = cartInstruments.filter(item => item.id !== instrument.id);
+            localStorage.setItem('cartInstruments', JSON.stringify(updatedCart));
+            cartInstruments = updatedCart;
+            window.location.reload();
+        })
 
         itemsCartContainer.appendChild(itemDiv);
     });
