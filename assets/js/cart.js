@@ -3,44 +3,49 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Array with instruments data added to cart in Local Storage
     let cartInstruments = JSON.parse(localStorage.getItem('cartInstruments')) || [];
 
+    // Displaying container for items if there are items in the cart
+    if(cartInstruments.length > 0){
+        const itemsCartContainer = document.querySelector('.items-cart-container');
+        itemsCartContainer.style.display = 'block';
+    }
+
     // Selecting container of all the items in the cart
     const itemsCartContainer = document.querySelector('.items-cart-container');
 
     // HTML code of each item in the cart
     const contentItemCartDiv = `
-            <div id="" class="item-cart-group">
-                <div class="item-title-img">
-                    <h1>
-                    </h1>
-                    <img src="" alt="">
-                </div>
-                <div class="items-media-container">
-                    <div class="item-media">
-                        <h1>Mídia Digital</h1>
-                        <div class="quant-control">
-                            <button class="btn-remove">-</button>
-                            <span></span>
-                            <button class="btn-add">+</button>
-                        </div>
-                    </div>
-
-                    <div class="item-media">
-                        <h1>Mídia Física</h1>
-                        <div class="quant-control">
-                            <button class="btn-remove">-</button>
-                            <span></span>
-                            <button class="btn-add">+</button>
-                        </div>
-                    </div>
-                </div>
-                <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
+            <div class="item-title-img">
+                <h1>
+                </h1>
+                <img src="" alt="">
             </div>
+            <div class="items-media-container">
+                <div class="item-media">
+                    <h1>Mídia Digital</h1>
+                    <div class="quant-control">
+                        <button class="btn-remove">-</button>
+                        <span></span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+
+                <div class="item-media">
+                    <h1>Mídia Física</h1>
+                    <div class="quant-control">
+                        <button class="btn-remove">-</button>
+                        <span></span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </div>
+            <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
     `
 
     // Loop to fill the container with the items in the cart
     cartInstruments.forEach((instrument, index) => {
         // Creating a div for each item
         const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item-cart-group');
 
         // Filling the div with the HTML code
         itemDiv.innerHTML = contentItemCartDiv;
@@ -132,4 +137,5 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         itemsCartContainer.appendChild(itemDiv);
     });
+
 });
