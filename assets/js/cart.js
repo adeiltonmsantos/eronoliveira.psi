@@ -6,11 +6,51 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Displaying container for items if there are items in the cart
     if(cartInstruments.length > 0){
         const itemsCartContainer = document.querySelector('.items-cart-container');
-        itemsCartContainer.style.display = 'block';
+        itemsCartContainer.style.display = 'flex';
     }
 
     // Selecting container of all the items in the cart
     const itemsCartContainer = document.querySelector('.items-cart-container');
+
+    // Selecting all the form buttons
+    const btnBack = document.querySelector('.btn-form-cart:nth-child(1)');
+    const btnDeleteItems = document.querySelector('.btn-form-cart:nth-child(2)');
+    const btnSubmit = document.querySelector('.btn-form-cart:nth-child(3)');
+
+    function verifyButtonsState(){
+        if(cartInstruments.length > 0){
+            btnDeleteItems.classList.remove('btn-disabled');
+            btnSubmit.classList.remove('btn-disabled');
+        }else{
+            btnDeleteItems.classList.add('btn-disabled');
+            btnSubmit.classList.add('btn-disabled');
+        }
+    }
+
+    verifyButtonsState();
+
+    const SERVICE_ID = 'service_5bm4yll';
+    const TEMPLATE_ID = 'template_b48ndqe';
+    const PUBLIC_KEY = '-j6Q3glibCsWMaqlL';
+
+    (function() {
+        emailjs.init({
+            publicKey: PUBLIC_KEY,
+        });
+    })();
+
+    // Event listener for the back button
+    btnBack.addEventListener('click', () => {
+        window.location.href = 'instruments.html';
+    });
+
+    // Event listener for send button
+    btnSubmit.addEventListener('click', (event) => {
+
+        event.preventDefault();
+        event.target.style.disabled = true;
+
+    });
 
     // HTML code of each item in the cart
     const contentItemCartDiv = `

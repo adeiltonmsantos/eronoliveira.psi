@@ -70,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                 </div>
                 <img class="img-cart-instruments" src="assets/img/instrumentos/shopping_cart.svg"
                     alt="Carrinho de compras" title="Adicionar ao orçamento">
-                
+                <div class="message-add-to-cart">
+                    Item adicionado ao carrinho!
+                </div>
             </div>
 
             <button class="btn-go-to-cart btn-disabled">IR PARA O CARRINHO</button>
@@ -229,6 +231,45 @@ document.addEventListener('DOMContentLoaded', () =>{
                 // Assigning click event to add to cart button
                 btnAddCartInstrument.addEventListener('click', () => {
 
+                    // Function to show "Item added to cart" message
+                    function showMessageAddToCart(messageText=''){
+                        // Selecting container where message container is
+                        const mainContainer = instrumentDiv.querySelector('.group-instruments-order-container');
+                        const messageWidth = mainContainer.offsetWidth * 0.9;
+                        const messageHeight = mainContainer.offsetHeight * 0.6;
+
+                        // Selecting message container
+                        const message = instrumentDiv.querySelector('.message-add-to-cart');
+
+                        // Width and height of message container
+                        message.style.width = `${messageWidth}px`;
+                        message.style.height = `${messageHeight}px`;
+                        
+                        // Calculating position to center the message container
+                        const posX = (mainContainer.offsetWidth - messageWidth) / 2;
+                        const posY = (mainContainer.offsetHeight - messageHeight) / 2;
+
+                        console.log(mainContainer.offsetHeight, messageHeight);
+
+                        // Positioning message container
+                        message.style.left = `${posX}px`;
+                        message.style.top = `${posY}px`;
+
+                        if(messageText === ''){
+                            message.textContent = 'Item adicionado ao carrinho!';
+                        }else{
+                            message.textContent = messageText;
+                        }
+
+                        // Displaying message container
+                        message.style.display = 'block';
+
+                        // Time to hide message container
+                        setTimeout(() => {
+                            message.style.display = 'none';
+                        }, 2000);
+                    }
+
                     // Object with data to add to cart
                     const item = {
                         id: instrument.id,
@@ -254,12 +295,14 @@ document.addEventListener('DOMContentLoaded', () =>{
                         // Updating cart quantity display
                         increaseCartQuantityDisplay();
                         updateCartQuantity();
+                        showMessageAddToCart();
 
                     // Found item in cart, updating quantities
                     }else if (idItem !== -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
                         cartInstruments[idItem].quant_digital = valueQuantDigital;
                         cartInstruments[idItem].quant_physical = valueQuantPhysical;
                         localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                        showMessageAddToCart('Item atualizado com sucesso!');
 
                         // Removing item from cart if both quantities are zero
                     }else if(idItem !== -1 && (valueQuantDigital === 0 && valueQuantPhysical === 0)){
@@ -268,6 +311,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         cartInstruments = updatedCart;
                         // Updating cart quantity display
                         updateCartQuantity();
+                        showMessageAddToCart('Item removido do carrinho!');
                     }
                     updateButtonGoToCart();
 

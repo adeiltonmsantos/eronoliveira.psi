@@ -71,19 +71,19 @@
             <div class="form-cart-container">
                 <div class="group-input">
                     <label for="name">Nome Completo</label>
-                    <input type="text" id="name" placeholder="Digite seu nome completo">
+                    <input type="text" id="name" placeholder="Digite seu nome completo" required>
                 </div>
                 <div class="group-input">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
                 </div>
                 <div class="group-input">
                     <label for="email-confirm">Confirme seu e-mail</label>
-                    <input type="email" id="email-confirm" placeholder="Confirme seu e-mail">
+                    <input type="email" id="email-confirm" placeholder="Confirme seu e-mail" required>
                 </div>
                 <div class="group-input">
                     <label for="cellphone">Celular</label>
-                    <input type="tel" id="cellphone" placeholder="Digite seu celular">
+                    <input type="tel" id="cellphone" placeholder="Digite seu celular" required>
                 </div>
                 <div class="group-input">
                     <button class="btn-form-cart" type="button">Voltar</button>
@@ -99,6 +99,7 @@
     </section>
 
     <script src="assets/js/cart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 
 </html>
