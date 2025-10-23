@@ -46,10 +46,46 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     // Event listener for send button
     btnSubmit.addEventListener('click', (event) => {
-
         event.preventDefault();
-        event.target.style.disabled = true;
 
+        // Selecting form
+        const formContainer = document.querySelector('form');
+
+        // Selecting name field
+        const nameField = formContainer.querySelector('#name');
+
+        // Selecting
+        const emailField = formContainer.querySelector('#email');
+
+        // Selecting confirm e-mail field
+        const confirmEmailField = formContainer.querySelector('#email-confirm');
+
+        // Updating validation message for confirm e-mail field
+        if(emailField.value !== confirmEmailField.value){
+            confirmEmailField.setCustomValidity('Os e-mails não são idênticos');
+        }else{
+            confirmEmailField.setCustomValidity('');
+        }
+
+        // Selecting phone field
+        const phoneField = formContainer.querySelector('#cellphone');
+
+        // Defining pattern for phone field
+        phoneField.setAttribute('pattern', '\\(\\d{2}\\) (?:9\\d{4}-\\d{4}|\\d{4}-\\d{4})');
+
+        // Defining validation message for phone field
+        phoneField.setAttribute('title', 'Formato esperado: (XX) XXXX-XXXX ou (XX) 9XXXX-XXXX');
+
+        // Flag to indicate if all fields are valid
+        const validForm = formContainer.reportValidity();
+
+        if(validForm){
+            console.log('Formulário enviado')
+        }
+        else{
+            console.log('Formulário inválido')
+        }
+    
     });
 
     // HTML code of each item in the cart
