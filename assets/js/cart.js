@@ -44,12 +44,17 @@ document.addEventListener('DOMContentLoaded', () =>{
         window.location.href = 'instruments.html';
     });
 
+    // Selecting phone field
+    const phoneField = document.querySelector('#cellphone');
+    maskPhone('cellphone', 15);
+
+    // Selecting form
+    const formContainer = document.querySelector('form');
+    formContainer.autocomplete = 'off';
+
     // Event listener for send button
     btnSubmit.addEventListener('click', (event) => {
         event.preventDefault();
-
-        // Selecting form
-        const formContainer = document.querySelector('form');
 
         // Selecting name field
         const nameField = formContainer.querySelector('#name');
@@ -66,9 +71,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         }else{
             confirmEmailField.setCustomValidity('');
         }
-
-        // Selecting phone field
-        const phoneField = formContainer.querySelector('#cellphone');
 
         // Defining pattern for phone field
         phoneField.setAttribute('pattern', '\\(\\d{2}\\) (?:9\\d{4}-\\d{4}|\\d{4}-\\d{4})');
