@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Displaying container for items if there are items in the cart
     if(cartInstruments.length > 0){
         const itemsCartContainer = document.querySelector('.items-cart-container');
-        itemsCartContainer.style.display = 'flex';
+        itemsCartContainer.classList.remove('hidden-element');
+    }else{
+        // Disableing form fields
+        const formFields = document.querySelectorAll('form input');
+        console.log(formFields);
+        formFields.forEach(field => field.disabled = true);
     }
 
     // Selecting container of all the items in the cart
@@ -44,13 +49,54 @@ document.addEventListener('DOMContentLoaded', () =>{
         window.location.href = 'instruments.html';
     });
 
+    // Event handler for exclude button
+    btnDeleteItems.addEventListener('click', () => {
+        if(cartInstruments && cartInstruments.length > 0){
+            // Displaying and positioning splash
+            const splash = document.querySelector('.splash-form');
+            splash.classList.remove('hidden-element');
+            const splashHeight = splash.offsetHeight;
+            const splashWidth = splash.offsetWidth;
+
+            const containerHeigh = splash.parentElement.offsetHeight;
+            const containerWidth = splash.parentElement.offsetWidth;
+
+            const splashTop = (containerHeigh - splashHeight) / 2;
+            const splashLeft = (containerWidth - splashWidth) / 2;
+
+            splash.style.top = `${splashTop}px`;
+            splash.style.left = `${splashLeft}px`;
+
+            // Selecting splash buttons
+            const splashConfirm = splash.querySelector('.splash-form-buttons-container button:nth-child(1)');
+            const splashCancel = splash.querySelector('.splash-form-buttons-container button:nth-child(2)');
+
+            // Event handler for confirm button
+            splashConfirm.addEventListener('click', () => {
+                localStorage.removeItem('cartInstruments')
+                cartInstruments = [];
+                itemsCartContainer.innerHTML = '';
+                itemsCartContainer.classList.add('hidden-element');
+                splash.classList.add('hidden-element');
+                verifyButtonsState();
+            })
+
+            // Event handler for cancel button
+            splashCancel.addEventListener('click', () => {
+                splash.classList.add('hidden-element');
+
+            })
+        }
+    })
+
     // Selecting phone field
     const phoneField = document.querySelector('#cellphone');
+
+    // Applying mask to phone field
     maskPhone('cellphone', 15);
 
     // Selecting form
     const formContainer = document.querySelector('form');
-    formContainer.autocomplete = 'off';
 
     // Event listener for send button
     btnSubmit.addEventListener('click', (event) => {

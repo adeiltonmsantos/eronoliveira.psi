@@ -11,8 +11,12 @@ document.addEventListener('DOMContentLoaded', () =>{
     
     // Function to update cart quantity display
     function updateCartQuantity() {
-        if (cartQuantity) {
+        const linkToCart = cartQuantity.parentElement;
+        if(cartQuantity && cartInstruments.length > 0) {
             cartQuantity.textContent = cartInstruments.length;
+            linkToCart.setAttribute('href', 'cart.html');
+        }else{
+            linkToCart.setAttribute('href', '#');
         }
     }
 

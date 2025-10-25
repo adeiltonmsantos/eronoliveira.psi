@@ -4,13 +4,14 @@
 }
 
 
-/* Form of client data */
+/* Form styles of client data */
 .form-cart-container{
     display: flex;
     flex-direction: column;
     width: 29.2rem;
     align-items: stretch;
     gap: 1rem;
+    position: relative;
 }
 
 .group-input{
@@ -38,7 +39,36 @@
     border-radius: 0.5rem;
 }
 
-.btn-form-cart{
+
+/* Splash to confirm to use in form */
+.splash-form{
+    background-color: #5d745e;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    z-index: 2;
+}
+
+.hidden-element{
+    display: none !important;
+}
+
+.splash-form h1{
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.splash-form-buttons-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-form-cart,
+.splash-form button{
     border: none;
     background-color: #91A692;
     color: #fff;
@@ -46,6 +76,7 @@
     padding: 0.4rem 2rem;
     width: auto;
     border-radius: 1.4rem;
+    cursor: pointer;
 }
 
 /* Container for cart items */
