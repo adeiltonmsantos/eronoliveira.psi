@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () =>{
                             formContainer.reset();
                             // Clearing items from cart
                             clearCart();
-
                             // Disabling form buttons
                             verifyFormButtonsState();
                         }
@@ -194,9 +193,6 @@ document.addEventListener('DOMContentLoaded', () =>{
                         console.log('FAILED...', error);
                     });
             }
-            else{
-                console.log(phoneField.value.length);
-            }
         }
     
     });
@@ -208,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     }else{
         // Disableing form fields
         const formFields = document.querySelectorAll('form input');
-        console.log(formFields);
         formFields.forEach(field => field.disabled = true);
     }
 
@@ -289,10 +284,27 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         // Event listener for reducing digital media
         removeDigitalButton.addEventListener('click', () => {
-            if (instrument.quant_digital > 0) {
+            // There's a digital item. Removing...
+            if(instrument.quant_digital === 1){
                 instrument.quant_digital -= 1;
                 quantitySpans[0].textContent = instrument.quant_digital;
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                // Also there's no physical item. Removing whole item from cart
+                if(instrument.quant_physical === 0) {
+                    const newCart = cartInstruments.filter(item => item.id !== instrument.id);
+                    cartInstruments = newCart;
+                    itemsCartContainer.removeChild(itemDiv);
+                    // Cart is empty. Cleaning cart and screen...
+                    if(cartInstruments.length === 0){
+                        clearCart();
+                        itemsCartContainer.classList.add('hidden-element');
+                        verifyFormButtonsState();
+                    }
+                    // Cart isn't empty. Updating cart
+                    else{
+                        localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                    }
+                }
             }
         });
 
@@ -315,10 +327,25 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         // Event listener for reducing physical media
         removePhysicalButton.addEventListener('click', () => {
+            // Quantity of physical media higher then zero
             if (instrument.quant_physical > 0) {
                 instrument.quant_physical -= 1;
                 quantitySpans[1].textContent = instrument.quant_physical;
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                // Quantity of physical media and digital media are zero. Removing item...
+                if(instrument.quant_digital === 0 && instrument.quant_physical === 0){
+                    const newCart = cartInstruments.filter(item => item.id !== instrument.id)
+                    cartInstruments = newCart;
+                    localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                    itemsCartContainer.removeChild(itemDiv);
+                    // Cart is empty. Cleaning cart and screen...
+                    if(cartInstruments.length === 0){
+                        itemsCartContainer.innerHTML = '';
+                        itemsCartContainer.classList.add('hidden-element');
+                        clearCart();
+                        verifyFormButtonsState();
+                    }
+                }
             }
         });
         
