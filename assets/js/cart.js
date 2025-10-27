@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', () =>{
                 const templateParams = {
                     nome: emailField.value,
                     message: `
-                        Nome: ${nameField.value}
-                        E-mail: ${emailField.value}
-                        Telefone: ${phoneField.value}
-                        Item(ns):\n
+                        Nome do cliente: ${nameField.value}
+                        E-mail do cliente: ${emailField.value}
+                        Telefone do cliente: ${phoneField.value}
+                        Item(ns) selecionado(s):
                         ${strItems}
                     `
                 }
