@@ -2,6 +2,204 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     // Array with instruments data added to cart in Local Storage
     let cartInstruments = JSON.parse(localStorage.getItem('cartInstruments')) || [];
+    
+    // Selecting container of all the items in the cart
+    const itemsCartContainer = document.querySelector('.items-cart-container');
+
+    // Function to clear cart
+    function clearCart(){
+        localStorage.removeItem('cartInstruments')
+        cartInstruments = [];
+        itemsCartContainer.innerHTML = '';
+        itemsCartContainer.classList.add('hidden-element');
+    }
+
+    // Selecting hidden splash and its sons
+    const splash = document.querySelector('.splash-form'); // Parent splash
+    const splashQuestion = splash.querySelector('.splash-form-question'); // Son element
+    const splashWait = splash.querySelector('.splash-form-wait'); // Son element
+    const splashSucess = splash.querySelector('.splash-form-sucess'); // Son element
+    const splashFail = splash.querySelector('.splash-form-fail'); // Son element
+
+
+
+    // Selecting all the form buttons
+    const btn = document.querySelectorAll('.btn-form-cart');
+
+    const btnBack = btn[0];
+    const btnDeleteItems = btn[1];
+    const btnSubmit = btn[2];
+
+    function verifyFormButtonsState(){
+        if(cartInstruments.length > 0){
+            btnDeleteItems.classList.remove('btn-disabled');
+            btnSubmit.classList.remove('btn-disabled');
+        }else{
+            btnDeleteItems.classList.add('btn-disabled');
+            btnSubmit.classList.add('btn-disabled');
+        }
+    }
+
+    verifyFormButtonsState();
+
+    // Event listener for the back button
+    btnBack.addEventListener('click', () => {
+        window.location.href = 'instruments.html';
+    });
+
+    // Applying mask to phone field
+    maskPhone('cellphone', 15);
+
+    // Selecting form
+    const formContainer = document.querySelector('form');
+
+    // Selecting name field
+    const nameField = formContainer.querySelector('#name');
+
+    // Selecting e-mail field
+    const emailField = formContainer.querySelector('#email');
+
+    // Selecting confirm e-mail field
+    const confirmEmailField = formContainer.querySelector('#email-confirm');
+
+    // Event listener for exclude button
+    btnDeleteItems.addEventListener('click', () => {
+        if(cartInstruments && cartInstruments.length > 0){
+            // Focusing back button
+            btnBack.focus();
+
+            // Displaying and positioning splash
+            splash.classList.remove('hidden-element');
+            splashQuestion.classList.remove('hidden-element');
+
+            // Centering splash inside its parent
+            centerElement(splash);
+
+            // Selecting splash buttons
+            const splashBtn = splash.querySelectorAll('button');
+            const splashConfirm = splashBtn[0];
+            const splashCancel = splashBtn[1];
+
+            // Event handler for confirm button
+            splashConfirm.addEventListener('click', () => {
+                clearCart();
+                splash.classList.add('hidden-element');
+                verifyFormButtonsState();
+            })
+
+            // Event handler for cancel button
+            splashCancel.addEventListener('click', () => {
+                splash.classList.add('hidden-element');
+                splashQuestion.classList.add('hidden-element');
+                // Focusing back button
+                btnBack.focus();
+            })
+        }
+    })
+
+    // Selecting phone field
+    const phoneField = document.querySelector('#cellphone');
+
+    // Confuguration for sending e-mail via API
+    const SERVICE_ID = 'service_5bm4yll';
+    const TEMPLATE_ID = 'template_b48ndqe';
+    const PUBLIC_KEY = '-j6Q3glibCsWMaqlL';
+
+    (function() {
+        emailjs.init({
+            publicKey: PUBLIC_KEY,
+        });
+    })();
+
+    // Event listener for send button
+    btnSubmit.addEventListener('click', (event) => {
+        event.preventDefault();
+        if(cartInstruments.length > 0){
+
+            // Updating validation message for confirm e-mail field
+            if(emailField.value !== confirmEmailField.value){
+                confirmEmailField.setCustomValidity('Os e-mails não são idênticos');
+            }else{
+                confirmEmailField.setCustomValidity('');
+            }
+
+            // Defining validation message for phone field
+            if(phoneField.value.length < 16){
+                phoneField.setCustomValidity('Está faltando algum dígito');
+            }
+
+            // Flag to indicate if all fields are valid
+            const validForm = formContainer.reportValidity();
+
+            if(validForm){
+                // Formating items
+                let strItems = '';
+                cartInstruments.forEach((item, index) => {
+                    const digQuant = item.quant_digital === 0 ? '' : 'uma cópia digital em PDF e';
+                    const phyQuant = item.quant_physical === 0 ? '' : `${item.quant_physical} cópia(s) impressa(s)`;
+                    strItems += `- ${item.h1}: ${digQuant} ${phyQuant}\n`;
+                })
+
+                // Form data to send
+                const templateParams = {
+                    nome: emailField.value,
+                    message: `
+                        Nome: ${nameField.value}
+                        E-mail: ${emailField.value}
+                        Telefone: ${phoneField.value}
+                        Item(ns):\n
+                        ${strItems}
+                    `
+                }
+
+                // Displaying splash
+                splash.classList.remove('hidden-element');
+                splashWait.classList.remove('hidden-element');
+
+                // Centering splash relative to its parent
+                centerElement(splash);
+
+                emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                    .then(response => {
+                        // Hiding wait splash
+                        splashWait.classList.add('hidden-element');
+                        // E-mail sent sucessfully
+                        if(response.status === 200){
+                            // Displaying sucess splash
+                            splashSucess.classList.remove('hidden-element');
+                            centerElement(splash);
+                            // Hiding sucess splash after 3 seconds
+                            setInterval(() => {
+                                splashSucess.classList.add('hidden-element');
+                            }, 3000);
+                            // Reseting form
+                            formContainer.reset();
+                            // Clearing items from cart
+                            clearCart();
+
+                            // Disabling form buttons
+                            verifyFormButtonsState();
+                        }
+                        // E-mail not sent
+                        else{
+                            // Displaying fail splash
+                            splashFail.classList.remove('hidden-element');
+                            // Hiding fail splash
+                            setInterval(() => {
+                                splashFail.classList.add('hidden-element');
+                            }, 3000);
+                        }
+                    })
+                    .catch(error => {
+                        console.log('FAILED...', error);
+                    });
+            }
+            else{
+                console.log(phoneField.value.length);
+            }
+        }
+    
+    });
 
     // Displaying container for items if there are items in the cart
     if(cartInstruments.length > 0){
@@ -13,128 +211,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         console.log(formFields);
         formFields.forEach(field => field.disabled = true);
     }
-
-    // Selecting container of all the items in the cart
-    const itemsCartContainer = document.querySelector('.items-cart-container');
-
-    // Selecting all the form buttons
-    const btnBack = document.querySelector('.btn-form-cart:nth-child(1)');
-    const btnDeleteItems = document.querySelector('.btn-form-cart:nth-child(2)');
-    const btnSubmit = document.querySelector('.btn-form-cart:nth-child(3)');
-
-    function verifyButtonsState(){
-        if(cartInstruments.length > 0){
-            btnDeleteItems.classList.remove('btn-disabled');
-            btnSubmit.classList.remove('btn-disabled');
-        }else{
-            btnDeleteItems.classList.add('btn-disabled');
-            btnSubmit.classList.add('btn-disabled');
-        }
-    }
-
-    verifyButtonsState();
-
-    const SERVICE_ID = 'service_5bm4yll';
-    const TEMPLATE_ID = 'template_b48ndqe';
-    const PUBLIC_KEY = '-j6Q3glibCsWMaqlL';
-
-    (function() {
-        emailjs.init({
-            publicKey: PUBLIC_KEY,
-        });
-    })();
-
-    // Event listener for the back button
-    btnBack.addEventListener('click', () => {
-        window.location.href = 'instruments.html';
-    });
-
-    // Event handler for exclude button
-    btnDeleteItems.addEventListener('click', () => {
-        if(cartInstruments && cartInstruments.length > 0){
-            // Displaying and positioning splash
-            const splash = document.querySelector('.splash-form');
-            splash.classList.remove('hidden-element');
-            const splashHeight = splash.offsetHeight;
-            const splashWidth = splash.offsetWidth;
-
-            const containerHeigh = splash.parentElement.offsetHeight;
-            const containerWidth = splash.parentElement.offsetWidth;
-
-            const splashTop = (containerHeigh - splashHeight) / 2;
-            const splashLeft = (containerWidth - splashWidth) / 2;
-
-            splash.style.top = `${splashTop}px`;
-            splash.style.left = `${splashLeft}px`;
-
-            // Selecting splash buttons
-            const splashConfirm = splash.querySelector('.splash-form-buttons-container button:nth-child(1)');
-            const splashCancel = splash.querySelector('.splash-form-buttons-container button:nth-child(2)');
-
-            // Event handler for confirm button
-            splashConfirm.addEventListener('click', () => {
-                localStorage.removeItem('cartInstruments')
-                cartInstruments = [];
-                itemsCartContainer.innerHTML = '';
-                itemsCartContainer.classList.add('hidden-element');
-                splash.classList.add('hidden-element');
-                verifyButtonsState();
-            })
-
-            // Event handler for cancel button
-            splashCancel.addEventListener('click', () => {
-                splash.classList.add('hidden-element');
-
-            })
-        }
-    })
-
-    // Selecting phone field
-    const phoneField = document.querySelector('#cellphone');
-
-    // Applying mask to phone field
-    maskPhone('cellphone', 15);
-
-    // Selecting form
-    const formContainer = document.querySelector('form');
-
-    // Event listener for send button
-    btnSubmit.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        // Selecting name field
-        const nameField = formContainer.querySelector('#name');
-
-        // Selecting
-        const emailField = formContainer.querySelector('#email');
-
-        // Selecting confirm e-mail field
-        const confirmEmailField = formContainer.querySelector('#email-confirm');
-
-        // Updating validation message for confirm e-mail field
-        if(emailField.value !== confirmEmailField.value){
-            confirmEmailField.setCustomValidity('Os e-mails não são idênticos');
-        }else{
-            confirmEmailField.setCustomValidity('');
-        }
-
-        // Defining pattern for phone field
-        phoneField.setAttribute('pattern', '\\(\\d{2}\\) (?:9\\d{4}-\\d{4}|\\d{4}-\\d{4})');
-
-        // Defining validation message for phone field
-        phoneField.setAttribute('title', 'Formato esperado: (XX) XXXX-XXXX ou (XX) 9XXXX-XXXX');
-
-        // Flag to indicate if all fields are valid
-        const validForm = formContainer.reportValidity();
-
-        if(validForm){
-            console.log('Formulário enviado')
-        }
-        else{
-            console.log('Formulário inválido')
-        }
-    
-    });
 
     // HTML code of each item in the cart
     const contentItemCartDiv = `

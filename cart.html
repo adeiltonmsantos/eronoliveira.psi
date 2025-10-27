@@ -84,18 +84,31 @@
                 </div>
                 <div class="group-input">
                     <label for="cellphone">Celular</label>
-                    <input type="tel" id="cellphone" placeholder="Digite seu celular" required autocomplete="off">
+                    <input type="tel" id="cellphone" placeholder="Digite seu celular" minlength="16" required
+                        autocomplete="off">
                 </div>
                 <div class="group-input">
-                    <button class="btn-form-cart" type="button">Voltar</button>
+                    <button class="btn-form-cart" type="button" tabindex="0">Voltar</button>
                     <button class="btn-form-cart btn-disabled" type="button">Excluir itens</button>
                     <button class="btn-form-cart btn-disabled" type="submit">Enviar</button>
                 </div>
                 <div class="splash-form hidden-element">
-                    <h1>Deseja realmente excluir os itens do orçamento?</h1>
-                    <div class="splash-form-buttons-container">
-                        <button>Confirmar</button>
-                        <button>Cancelar</button>
+                    <div class="splash-form-question hidden-element">
+                        <h1>Deseja realmente excluir os itens do orçamento?</h1>
+                        <div class="splash-form-buttons-container">
+                            <button>Confirmar</button>
+                            <button>Cancelar</button>
+                        </div>
+                    </div>
+                    <div class="splash-form-wait hidden-element">
+                        Aguarde... <img src="assets/img/wait.gif" alt="Wait gif">
+                    </div>
+                    <div class="splash-form-sucess hidden-element">
+                        <h1>Orçamento enviado com sucesso!</h1>
+                    </div>
+                    <div class="splash-form-fail hidden-element">
+                        <h1>Orçamento não enviado!</h1>
+                        <p>Tente novamente</p>
                     </div>
                 </div>
             </div>
