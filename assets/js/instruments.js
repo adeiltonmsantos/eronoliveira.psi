@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 <div class="instruments-order-container">
                     <div class="instrument-media-option">
                         <h1>Mídia Digital</h1>
+                        <p></p>
                     </div>
                     <div class="order-container-details">
                         <div class="group-detail">
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 <div class="instruments-order-container">
                     <div class="instrument-media-option">
                         <h1>Mídia Física</h1>
+                        <p></p>
                     </div>
                     <div class="order-container-details">
                         <div class="group-detail">
@@ -172,6 +174,12 @@ document.addEventListener('DOMContentLoaded', () =>{
                 // Just value of quantity of digital media
                 let valueQuantDigital = parseInt(quantDigital.textContent);
 
+                // Selecting price value container
+                const digitalMediaPrice = digitalOrderContainer.querySelector('.instrument-media-option p');
+
+                // Defining digital price formated
+                digitalMediaPrice.textContent = instrument.price_digital_media.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
                 // Selecting button to add quantity of digital media
                 const btnAddDig = digitalOrderContainer.querySelector('.quant-control-container .btn-add');
 
@@ -206,6 +214,12 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                 // Just value of quantity of physical media
                 let valueQuantPhysical = parseInt(quantPhysical.textContent);
+
+                // Selecting physical price container
+                const physicalMediaPrice = physicalOrderContainer.querySelector('.instrument-media-option p');
+
+                // Defining physical price formated
+                physicalMediaPrice.textContent = instrument.price_physical_media.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 
                 // Selecting button to add quantity of physical media
                 const btnAddPhy = physicalOrderContainer.querySelector('.quant-control-container .btn-add');
@@ -278,7 +292,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                     const item = {
                         id: instrument.id,
                         quant_digital: valueQuantDigital,
+                        subTotal_digital: valueQuantDigital * instrument.price_digital_media,
                         quant_physical: valueQuantPhysical,
+                        subTotal_physical: valueQuantPhysical * instrument.price_physical_media,
                         img_src: instrument.img_src,
                         h1: instrument.h1
                     }
@@ -293,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     
                     // Searching if item already exists in cart. If exists, update quantity. If doesn't, add new item.
                     const idItem = cartInstruments.findIndex(item => item.id === instrument.id);
+                    // Item not found. Adding it to cart
                     if(idItem === -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
                         cartInstruments.push(item);
                         localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
@@ -301,10 +318,12 @@ document.addEventListener('DOMContentLoaded', () =>{
                         updateCartQuantity();
                         showMessageAddToCart();
 
-                    // Found item in cart, updating quantities
+                    // Found item in cart, updating quantities e subtotals
                     }else if (idItem !== -1 && (valueQuantDigital > 0 || valueQuantPhysical > 0)){
                         cartInstruments[idItem].quant_digital = valueQuantDigital;
+                        cartInstruments[idItem].subTotal_digital = valueQuantDigital * instrument.price_digital_media;
                         cartInstruments[idItem].quant_physical = valueQuantPhysical;
+                        cartInstruments[idItem].subTotal_physical = valueQuantPhysical * instrument.price_physical_media;
                         localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
                         showMessageAddToCart('Item atualizado com sucesso!');
 
