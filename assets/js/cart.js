@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         <span></span>
                         <button class="btn-add">+</button>
                     </div>
+                    <h2>R$ 100,00</h2>
                 </div>
 
                 <div class="item-media">
@@ -231,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         <span></span>
                         <button class="btn-add">+</button>
                     </div>
+                    <h2>R$ 200,00</h2>
                 </div>
             </div>
             <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
