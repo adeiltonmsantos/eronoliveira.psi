@@ -291,8 +291,10 @@ document.addEventListener('DOMContentLoaded', () =>{
                     // Object with data to add to cart
                     const item = {
                         id: instrument.id,
+                        price_digital: instrument.price_digital_media,
                         quant_digital: valueQuantDigital,
                         subTotal_digital: valueQuantDigital * instrument.price_digital_media,
+                        price_physical: instrument.price_physical_media,
                         quant_physical: valueQuantPhysical,
                         subTotal_physical: valueQuantPhysical * instrument.price_physical_media,
                         img_src: instrument.img_src,
