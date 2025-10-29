@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     <h2>R$ 200,00</h2>
                 </div>
             </div>
+            <p>Sub-total do item: <span>R$ 300,00</span></p>
             <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
     `
 
@@ -251,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         const itemTitle = itemDiv.querySelector('.item-title-img h1');
         itemTitle.textContent = `${index + 1}. ${instrument.h1}`;
 
-        // Selecting img for the image of the instrument
+        // Selecting img tag for the image of the instrument
         const itemImg = itemDiv.querySelector('.item-title-img img');
         itemImg.src = instrument.img_src;
         itemImg.alt = instrument.h1;
@@ -259,9 +260,23 @@ document.addEventListener('DOMContentLoaded', () =>{
         // Selecting all the spans for the quantities
         const quantitySpans = itemDiv.querySelectorAll('.item-media .quant-control span');
 
-        // Selecting span for the quantity of digital media
+        // Selecting spans for the quantity of digital and physical medias
         quantitySpans[0].textContent = instrument.quant_digital;
         quantitySpans[1].textContent = instrument.quant_physical;
+
+        // Selecting h2 tags for subtotal of each media
+        const subtotals = itemDiv.querySelectorAll('.item-media h2');
+        const subtotalDigital = subtotals[0];
+        const subtotalPhysical = subtotals[1];
+
+        // Calculating subtotals
+        const subtotalDigitalValue = instrument.subTotal_digital.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+        const subtotalPhysicalValue = instrument.subTotal_physical.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+        // Filling subtotals
+        subtotalDigital.textContent = subtotalDigitalValue;
+        subtotalPhysical.textContent = subtotalPhysicalValue;
+
 
         //Selecting add media buttons
         const addButtons = itemDiv.querySelectorAll('.item-media .quant-control .btn-add');
@@ -276,9 +291,15 @@ document.addEventListener('DOMContentLoaded', () =>{
         // Event listener for adding digital media
         addDigitalButton.addEventListener('click', () => {
             if(instrument.quant_digital === 0)
+                // Adding one digital media
                 instrument.quant_digital += 1;
+                // Updating span with quantity of digital media
                 quantitySpans[0].textContent = instrument.quant_digital;
+                // Updating subtotal of digital media in localStorage
+                instrument.subTotal_digital = instrument.quant_digital * instrument.price_digital;
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                // Updating subtotal of digital media on screen
+                subtotalDigital.textContent = instrument.subTotal_digital.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
         });
 
         // Selecting reduce digital media quantity button
@@ -290,7 +311,13 @@ document.addEventListener('DOMContentLoaded', () =>{
             if(instrument.quant_digital === 1){
                 instrument.quant_digital -= 1;
                 quantitySpans[0].textContent = instrument.quant_digital;
+                // Updating span with quantity of digital media
+                quantitySpans[0].textContent = instrument.quant_digital;
+                // Updating subtotal of digital media in localStorage
+                instrument.subTotal_digital = instrument.quant_digital * instrument.price_digital;
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                // Updating subtotal of digital media on screen
+                subtotalDigital.textContent = instrument.subTotal_digital.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
                 // Also there's no physical item. Removing whole item from cart
                 if(instrument.quant_physical === 0) {
                     const newCart = cartInstruments.filter(item => item.id !== instrument.id);
@@ -320,8 +347,17 @@ document.addEventListener('DOMContentLoaded', () =>{
         // Event listener for adding physical media
         addPhysicalButton.addEventListener('click', () => {
             instrument.quant_physical += 1;
+
+            // Updating span with quantity of physical media
             quantitySpans[1].textContent = instrument.quant_physical;
+            // Updating subtotal of physical media in localStorage
+            instrument.subTotal_physical = instrument.quant_physical * instrument.price_physical;
             localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+            // Updating subtotal of physical media on screen
+            subtotalPhysical.textContent = instrument.subTotal_physical.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+
+            // localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
         });
 
         // Selecting reduce physical media quantity button
@@ -332,8 +368,15 @@ document.addEventListener('DOMContentLoaded', () =>{
             // Quantity of physical media higher then zero
             if (instrument.quant_physical > 0) {
                 instrument.quant_physical -= 1;
+
+                // Updating span with quantity of physical media
                 quantitySpans[1].textContent = instrument.quant_physical;
+                // Updating subtotal of physical media in localStorage
+                instrument.subTotal_physical = instrument.quant_physical * instrument.price_physical;
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+                // Updating subtotal of physical media on screen
+                subtotalPhysical.textContent = instrument.subTotal_physical.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
                 // Quantity of physical media and digital media are zero. Removing item...
                 if(instrument.quant_digital === 0 && instrument.quant_physical === 0){
                     const newCart = cartInstruments.filter(item => item.id !== instrument.id)
