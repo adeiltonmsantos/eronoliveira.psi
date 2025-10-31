@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     <h2>R$ 200,00</h2>
                 </div>
             </div>
-            <p>Sub-total do item: <span>R$ 300,00</span></p>
+            <div class="subtotal-container"><p>Sub-total: <span></span></p></div>
             <img src="assets/img/trash.png" class="img-trash" alt="Excluir item">
     `
 
@@ -280,6 +280,22 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         //Selecting add media buttons
         const addButtons = itemDiv.querySelectorAll('.item-media .quant-control .btn-add');
+
+
+        // *******************************************************************************
+        // Handling subtotal changes
+        // *******************************************************************************
+        // Selecting subtotal container
+        const subtotalContainer = itemDiv.querySelector('.subtotal-container');
+        // Function to fill with value
+        function updateSubTotal(){
+            const subDigital = instrument.price_digital * instrument.quant_digital;
+            const subPhysical = instrument.price_physical * instrument.quant_physical;
+            subtotalContainer.querySelector('span').textContent = (subDigital + subPhysical).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+        }
+        updateSubTotal();
+
+
 
         // *******************************************************************************
         // Handling digital media quantity changes
@@ -394,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             }
         });
         
+
         // *******************************************************************************
         // Handling item removal from cart
         // *******************************************************************************

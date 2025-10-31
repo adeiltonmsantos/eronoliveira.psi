@@ -1,5 +1,5 @@
 /* Paragraph below the page title */
-.main-container.main-container-instruments p{
+.main-container.main-container-instruments > p{
     width: 29.2rem;
 }
 
@@ -136,6 +136,24 @@
     padding: 1.5rem 1rem;
     border-radius: 1rem;
     gap: 1.5rem;
+}
+
+.subtotal-container{
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background-color: #bdcebe;
+    width: 22.5rem;
+    align-self: stretch;
+}
+
+.subtotal-container p{
+    text-align: center;
+}
+
+.subtotal-container span{
+    font-size: 1.6rem;
 }
 
 .item-title-img{
