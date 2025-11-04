@@ -267,8 +267,6 @@ document.addEventListener('DOMContentLoaded', () =>{
                         const posX = (mainContainer.offsetWidth - messageWidth) / 2;
                         const posY = (mainContainer.offsetHeight - messageHeight) / 2;
 
-                        console.log(mainContainer.offsetHeight, messageHeight);
-
                         // Positioning message container
                         message.style.left = `${posX}px`;
                         message.style.top = `${posY}px`;
@@ -280,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         }
 
                         // Displaying message container
-                        message.style.display = 'block';
+                        message.style.display = 'flex';
 
                         // Time to hide message container
                         setTimeout(() => {

@@ -6,7 +6,17 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Selecting container of all the items in the cart
     const itemsCartContainer = document.querySelector('.items-cart-container');
 
-    // Function to clear cart
+    // Selecting all the form buttons
+    const btn = document.querySelectorAll('.btn-form-cart');
+    const btnBack = btn[0];
+    const btnDeleteItems = btn[1];
+    const btnSubmit = btn[2];
+
+    // **************************************************************************** //
+    //                       Functions of the cart page
+    // **************************************************************************** //
+
+    // Function to clear cart in localStorage
     function clearCart(){
         localStorage.removeItem('cartInstruments')
         cartInstruments = [];
@@ -14,22 +24,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         itemsCartContainer.classList.add('hidden-element');
     }
 
-    // Selecting hidden splash and its sons
-    const splash = document.querySelector('.splash-form'); // Parent splash
-    const splashQuestion = splash.querySelector('.splash-form-question'); // Son element
-    const splashWait = splash.querySelector('.splash-form-wait'); // Son element
-    const splashSucess = splash.querySelector('.splash-form-sucess'); // Son element
-    const splashFail = splash.querySelector('.splash-form-fail'); // Son element
-
-
-
-    // Selecting all the form buttons
-    const btn = document.querySelectorAll('.btn-form-cart');
-
-    const btnBack = btn[0];
-    const btnDeleteItems = btn[1];
-    const btnSubmit = btn[2];
-
+    // Function to enable or desable buttons, depending on the number of items in the cart in localStorage
     function verifyFormButtonsState(){
         if(cartInstruments.length > 0){
             btnDeleteItems.classList.remove('btn-disabled');
@@ -39,6 +34,33 @@ document.addEventListener('DOMContentLoaded', () =>{
             btnSubmit.classList.add('btn-disabled');
         }
     }
+
+    // Function to update subtotal of each item on screen
+    function updateSubTotalItem(itemID){
+        try{
+            const subTotalDigitalValue = cartInstruments.find(item => item.id === itemID).subTotal_digital;
+            const subtTotalPhysicalValue = cartInstruments.find(item => item.id === itemID).subTotal_physical;
+            const subtotalContainer = document.querySelector(`#${itemID} .subtotal-container p span`);
+            
+            const subTotalValue = (subTotalDigitalValue + subtTotalPhysicalValue).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            subtotalContainer.textContent = subTotalValue;
+        }catch(error){
+            console.log('Item excluído do carrinho');
+        }
+    }
+
+    // **************************************************************************** //
+    //                   End of functions of the cart page
+    // **************************************************************************** //
+
+
+
+    // Selecting hidden splash and its sons
+    const splash = document.querySelector('.splash-form'); // Parent splash
+    const splashQuestion = splash.querySelector('.splash-form-question'); // Son element
+    const splashWait = splash.querySelector('.splash-form-wait'); // Son element
+    const splashSucess = splash.querySelector('.splash-form-sucess'); // Son element
+    const splashFail = splash.querySelector('.splash-form-fail'); // Son element
 
     verifyFormButtonsState();
 
@@ -62,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Selecting confirm e-mail field
     const confirmEmailField = formContainer.querySelector('#email-confirm');
 
-    // Event listener for exclude button
+    // Event listener for exclude button (all items in cart)
     btnDeleteItems.addEventListener('click', () => {
         if(cartInstruments && cartInstruments.length > 0){
             // Focusing back button
@@ -197,19 +219,23 @@ document.addEventListener('DOMContentLoaded', () =>{
     
     });
 
-    // Displaying container for items if there are items in the cart
+    // Displaying container for items if there are items in cart
     if(cartInstruments.length > 0){
         const itemsCartContainer = document.querySelector('.items-cart-container');
         itemsCartContainer.classList.remove('hidden-element');
+    // Disableing form fields because there are no items in cart
     }else{
-        // Disableing form fields
         const formFields = document.querySelectorAll('form input');
         formFields.forEach(field => field.disabled = true);
     }
 
+    // *****************************************************************************
+    //                   Rendering all items of cart on screen 
+    // *****************************************************************************
+
     // HTML code of each item in the cart
     const contentItemCartDiv = `
-            <div class="item-title-img">
+            <div id="" class="item-title-img">
                 <h1>
                 </h1>
                 <img src="" alt="">
@@ -248,6 +274,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         // Filling the div with the HTML code
         itemDiv.innerHTML = contentItemCartDiv;
 
+        // Defining the item div id
+        itemDiv.id = instrument.id;
+
         // Selecting h1 for the name of the instrument
         const itemTitle = itemDiv.querySelector('.item-title-img h1');
         itemTitle.textContent = `${index + 1}. ${instrument.h1}`;
@@ -281,22 +310,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         //Selecting add media buttons
         const addButtons = itemDiv.querySelectorAll('.item-media .quant-control .btn-add');
 
-
-        // *******************************************************************************
-        // Handling subtotal changes
-        // *******************************************************************************
-        // Selecting subtotal container
-        const subtotalContainer = itemDiv.querySelector('.subtotal-container');
-        // Function to fill with value
-        function updateSubTotal(){
-            const subDigital = instrument.price_digital * instrument.quant_digital;
-            const subPhysical = instrument.price_physical * instrument.quant_physical;
-            subtotalContainer.querySelector('span').textContent = (subDigital + subPhysical).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-        }
-        updateSubTotal();
-
-
-
         // *******************************************************************************
         // Handling digital media quantity changes
         // *******************************************************************************
@@ -316,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
                 // Updating subtotal of digital media on screen
                 subtotalDigital.textContent = instrument.subTotal_digital.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+                updateSubTotalItem(instrument.id);
         });
 
         // Selecting reduce digital media quantity button
@@ -350,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
                     }
                 }
+                updateSubTotalItem(instrument.id);
             }
         });
 
@@ -371,9 +386,8 @@ document.addEventListener('DOMContentLoaded', () =>{
             localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
             // Updating subtotal of physical media on screen
             subtotalPhysical.textContent = instrument.subTotal_physical.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-
-
-            // localStorage.setItem('cartInstruments', JSON.stringify(cartInstruments));
+            // Updating subtotal of whole item
+            updateSubTotalItem(instrument.id);
         });
 
         // Selecting reduce physical media quantity button
@@ -407,6 +421,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                         verifyFormButtonsState();
                     }
                 }
+                // Updating subtotal of whole item
+                updateSubTotalItem(instrument.id);
             }
         });
         
@@ -425,6 +441,8 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
 
         itemsCartContainer.appendChild(itemDiv);
+        updateSubTotalItem(instrument.id);
+
     });
 
 });

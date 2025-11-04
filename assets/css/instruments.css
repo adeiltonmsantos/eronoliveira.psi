@@ -163,6 +163,8 @@
     border-radius: 1rem;
     text-align: center;
     display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .quant-control-container{
