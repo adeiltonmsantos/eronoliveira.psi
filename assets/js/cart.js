@@ -445,4 +445,16 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     });
 
+    // Adding div with total of the items
+    const divTotalContent = `
+        <div class="total-container">
+            <p>
+                Total: <span>R$ 1000,00</span>
+            </p>
+        </div>
+    `;
+    const totalDiv = document.createElement('div');
+    totalDiv.innerHTML = divTotalContent;
+    itemsCartContainer.appendChild(totalDiv);
+
 });
