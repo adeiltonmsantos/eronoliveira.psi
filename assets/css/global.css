@@ -385,6 +385,69 @@ header::before{
     align-items: center;
 }
 
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b2c22;
+    color: #fff;
+    gap: 1rem;
+    padding: 3rem;
+}
+
+footer p, footer a{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+footer a{
+    text-decoration: none;
+}
+
+.footer-logo-eronilde{
+    gap: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0 2rem;
+    border-bottom: 1px inset #8F8F8F;
+}
+
+.footer-nome-crp-eronilde{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.2rem;
+}
+
+.footer-nome-crp-eronilde h1, .footer-nome-crp-eronilde h3{
+    font-family: "Kdam Thmor Pro";
+    font-weight: normal;
+}
+
+.footer-nome-crp-eronilde h1{
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+.footer-nome-crp-eronilde h3{
+    font-size: 1.5rem;
+    line-height: 1.5rem
+}
+
+footer img{
+    width: 5.1rem;
+    height: 4.9rem;
+}
+
+.footer-brands{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-brands i{
+    font-size: 3rem;
+}
 
 /* Responsividade para smartfone quando girar tela */
 @media screen and (max-height: 630px){
@@ -601,6 +664,19 @@ header::before{
 
     .instruments-card-container{
         gap: 3rem;
+    }
+
+    footer{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-logo-eronilde{
+        border-bottom: none;
+    }
+
+    .footer-brands{
+        gap: 3.5rem;
     }
 
 }

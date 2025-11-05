@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const confirmEmailField = formContainer.querySelector('#email-confirm');
 
     // Event listener for exclude button (all items in cart)
-    btnDeleteItems.addEventListener('click', () => {
+    btnDeleteItems.addEventListener('click', (e) => {
         if(cartInstruments && cartInstruments.length > 0){
             // Focusing back button
             btnBack.focus();
@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                 splash.classList.add('hidden-element');
                 splashQuestion.classList.add('hidden-element');
                 // Focusing back button
-                btnBack.focus();
             })
+            e.target.focus();
         }
     })
 
@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const TEMPLATE_ID = 'template_b48ndqe';
     const PUBLIC_KEY = '-j6Q3glibCsWMaqlL';
 
+    // Initializing emailJS API
     (function() {
         emailjs.init({
             publicKey: PUBLIC_KEY,
@@ -204,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 // Centering splash relative to its parent
                 centerElement(splash);
 
+                // Sending e-mail
                 emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                     .then(response => {
                         // Hiding wait splash
