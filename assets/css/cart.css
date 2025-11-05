@@ -142,7 +142,7 @@
     font-size: 1.6rem;
     font-weight: bold;
     padding: 0.8rem;
-    border: 0.1rem solid #a6a6a6;
+    border: 0.3rem solid #e6e6e6;
     border-radius: 1rem;
     background-color: #bdcebe;
     width: 22.5rem;
@@ -221,7 +221,7 @@
 
 .total-container{
     background-color: #bdcebe;
-    border: 0.1rem solid #a6a6a6;
+    border: 0.6rem solid #e6e6e6;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
