@@ -1,62 +1,78 @@
-function automateSliders(sliderSection){
-    // Selecionando o container dos vídeos
+/*
+    automateSliders(sliderSection)
+
+    Function to activate an automatic slider. The main container (sliderSection)
+    must be specified. The main container (sliderSection) has the following structure
+
+    -> sliderSection (main container class)
+        -> slider (second level class to contain div with slides)
+            -> slider-container (third level class of slides container)
+                -> slide-01 (image or video)
+                -> slide-02 (image or video)
+                (...)
+        -> slider-controls (second level class to contain previous/next buttons)
+            -> prevBtn (previous slide button class)
+            -> nextBtn (next slide button class)
+*/
+function automateSliders(sliderSection, slideTime=6000){
+    // Selecting the video container
     const sliderContainer = sliderSection.querySelector('.slider-container');
 
-    // Selecionando o array com os vídeos do slider
+    // Selecting the array with the slider videos
     const videos = sliderSection.querySelectorAll('.slider-container video');
 
-    // Selecionando o botão de avançar
+    // Selecting the next button
     const nextButton = sliderSection.querySelector('.nextBtn');
     
-    // Selecionando o botão de voltar
+    // Selecting the back button
     const prevButton = sliderSection.querySelector('.prevBtn');
 
-    // Definindo o ponteiro do vídeo atual do slider
+    // Setting the current video pointer for the slider
     let currentVideo = 0;
 
-    // Definindo o total de vídeos do slider
+    // Defining the total number of videos in the slider
     const totalVideos = videos.length;
 
-    // Duração de cada transição
+    // Duration of each transition
     const transitionTime = 1500;
 
-    // Duração de exibição de cada vídeo
-    const displayTime = 6000;
+    // Display duration of each video in milliseconds
+    const displayTime = slideTime;
 
-    // Função para mover um vídeo no slider com base no ponteiro atual
+    // Function to move a video on the slider based on the current pointer
     function updateVideoPosition(){
         const videoWidth = videos[0].clientWidth;
         sliderContainer.style.transform = `translateX(-${currentVideo * videoWidth}px)`;
     }
 
-    // Função para avançar para o próximo vídeo
+    // Function to advance to the next video
     function nextVideo(){
         currentVideo = (currentVideo + 1) % totalVideos;
         updateVideoPosition();
     }
 
-    // Função para voltar para o vídeo anterior
+    // Function to return to the previous video
     function prevVideo(){
         currentVideo = (currentVideo - 1 + totalVideos) % totalVideos;
         updateVideoPosition();
     }
 
-    // Automatizando a transição de vídeos
+    // Automating video transitions
     let videoTimer = setInterval(nextVideo, displayTime);
 
-    // Adicionando evento de clique ao botão de avançar
+    // Adding a click event to the next button
     nextButton.addEventListener('click', () => {
         nextVideo();
         resetSlider();
     })
 
-    // Adicionando evento de clique ao botão de voltar
+    // Adding a click event to the back button
     prevButton.addEventListener('click', () => {
         prevVideo();
         resetSlider();
     })
 
-    // Função para resetar o timer do slider ao clicar nos botões
+    // Function to reset the slider timer by clicking the buttons
     function resetSlider(){
         clearInterval(videoTimer);
         videoTimer = setInterval(nextVideo, displayTime);
