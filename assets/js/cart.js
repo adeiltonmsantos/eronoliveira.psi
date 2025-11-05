@@ -38,16 +38,39 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Function to update subtotal of each item on screen
     function updateSubTotalItem(itemID){
         try{
+            // Subtotal digital media value of the item
             const subTotalDigitalValue = cartInstruments.find(item => item.id === itemID).subTotal_digital;
+            // Subtotal physical media value of the item
             const subtTotalPhysicalValue = cartInstruments.find(item => item.id === itemID).subTotal_physical;
+            // Selecting subtotal item (digital + physical medias) container
             const subtotalContainer = document.querySelector(`#${itemID} .subtotal-container p span`);
             
+            // Calculating subtotal value (digital + physical medias) and formatting to local currency
             const subTotalValue = (subTotalDigitalValue + subtTotalPhysicalValue).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            // Updating subtotal value in container
             subtotalContainer.textContent = subTotalValue;
+
+            // Selecting total of all items container
+            const totalContainer = document.querySelector('.total-container p span');
         }catch(error){
             console.log('Item excluído do carrinho');
         }
     }
+
+    // Functiom to update the total of all items together
+    function updateTotal(){
+        // Selecting total container
+        const totalContainer = document.querySelector('.total-container p span');
+        
+        // Adding up all the subtotals of the items in localStorage (cart)
+        const total = cartInstruments.reduce((acc, item) => {
+            return acc + item.subTotal_digital + item.subTotal_physical;
+        }, 0);
+
+        if(totalContainer)
+            totalContainer.textContent = total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    }
+
 
     // **************************************************************************** //
     //                   End of functions of the cart page
@@ -330,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 // Updating subtotal of digital media on screen
                 subtotalDigital.textContent = instrument.subTotal_digital.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
                 updateSubTotalItem(instrument.id);
+                updateTotal();
         });
 
         // Selecting reduce digital media quantity button
@@ -365,6 +389,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     }
                 }
                 updateSubTotalItem(instrument.id);
+                updateTotal();
             }
         });
 
@@ -388,6 +413,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             subtotalPhysical.textContent = instrument.subTotal_physical.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
             // Updating subtotal of whole item
             updateSubTotalItem(instrument.id);
+            updateTotal();
         });
 
         // Selecting reduce physical media quantity button
@@ -423,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
                 // Updating subtotal of whole item
                 updateSubTotalItem(instrument.id);
+                updateTotal();
             }
         });
         
@@ -442,19 +469,20 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         itemsCartContainer.appendChild(itemDiv);
         updateSubTotalItem(instrument.id);
-
     });
 
     // Adding div with total of the items
     const divTotalContent = `
         <div class="total-container">
             <p>
-                Total: <span>R$ 1000,00</span>
+                Total Geral: <span>R$ 1000,00</span>
             </p>
         </div>
     `;
     const totalDiv = document.createElement('div');
     totalDiv.innerHTML = divTotalContent;
     itemsCartContainer.appendChild(totalDiv);
+
+    updateTotal();
 
 });
