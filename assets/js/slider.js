@@ -11,7 +11,7 @@
                 -> slide-02 (image or video)
                 (...)
         -> slider-controls (second level class to contain previous/next buttons)
-            -> prevBtn (previous slide button class)
+            -> prevBtn (previous slide button class) 
             -> nextBtn (next slide button class)
 */
 function automateSliders(sliderSection, slideTime=6000){
