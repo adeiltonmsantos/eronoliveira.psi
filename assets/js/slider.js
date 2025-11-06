@@ -33,9 +33,6 @@ function automateSliders(sliderSection, slideTime=6000){
     // Defining the total number of videos in the slider
     const totalVideos = videos.length;
 
-    // Duration of each transition
-    const transitionTime = 1500;
-
     // Display duration of each video in milliseconds
     const displayTime = slideTime;
 

@@ -107,6 +107,15 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Selecting confirm e-mail field
     const confirmEmailField = formContainer.querySelector('#email-confirm');
 
+    // Event listener to active/deactive validation of confirm e-mail field
+    confirmEmailField.addEventListener('input', () => {
+        if(emailField.value !== confirmEmailField.value){
+            confirmEmailField.setCustomValidity('Os e-mails não são idênticos');
+        }else{
+            confirmEmailField.setCustomValidity('');
+        }
+    })
+
     // Event listener for exclude button (all items in cart)
     btnDeleteItems.addEventListener('click', (e) => {
         if(cartInstruments && cartInstruments.length > 0){
@@ -130,6 +139,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                 clearCart();
                 splash.classList.add('hidden-element');
                 verifyFormButtonsState();
+                formContainer.reset();
+                e.target.focus();
+                nameField.setCustomValidity('');
             })
 
             // Event handler for cancel button
@@ -170,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () =>{
             }
 
             // Defining validation message for phone field
-            if(phoneField.value.length < 16){
-                phoneField.setCustomValidity('Está faltando algum dígito');
+            if(phoneField.value.length < 15){
+                phoneField.setCustomValidity('O número do celular é obrigatório e deve ter 11 dígitos');
             }
 
             // Flag to indicate if all fields are valid
@@ -225,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                             clearCart();
                             // Disabling form buttons
                             verifyFormButtonsState();
+                            window.location.href = 'instruments.html';
                         }
                         // E-mail not sent
                         else{
