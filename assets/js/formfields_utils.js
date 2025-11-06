@@ -22,13 +22,14 @@ function maskPhone(idPhoneField, maxlengthPhoneField){
     const phone = document.getElementById(idPhoneField);
     if(phone){
         phone.setAttribute('maxlength', maxlengthPhoneField);
-        phone.addEventListener("keydown", (e) =>{
+        phone.addEventListener("input", (e) =>{
             // Getting phone field
             const target = e.target;
             let updatedValue = '';
 
             // Getting phone field value (just digits)
             const value = target.value.replace(/\D/g, '');
+            target.value = value;
 
             if(value.length > 0){
                 // Just DDD or less
@@ -47,6 +48,5 @@ function maskPhone(idPhoneField, maxlengthPhoneField){
                 target.value = updatedValue;
             }
         })
-    }else
-        console.log('Field not found');
+    }
 }
