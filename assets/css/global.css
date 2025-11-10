@@ -372,6 +372,12 @@ header::before{
     padding-bottom: 1rem;
 }
 
+.instruments-card-text p{
+    overflow-y: auto;
+    height: 10rem;
+    background-color: #eaf0ea;
+}
+
 .button-instruments-card{
     background-color: #4B592E;
     color: #fff;
